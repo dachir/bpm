@@ -10,11 +10,10 @@
  "field_order": [
   "date",
   "cost_center",
-  "cashier",
+  "branch",
   "column_break_fe2ky",
   "employee",
   "employee_name",
-  "branch",
   "section_break_nppbn",
   "pay_period",
   "column_break_moukf",
@@ -23,7 +22,12 @@
   "currency",
   "column_break_hmyrm",
   "amount",
-  "amended_from"
+  "section_break_d55g3",
+  "amount_in_words",
+  "amended_from",
+  "sage_entry_tab",
+  "cashier",
+  "sage_payment_number"
  ],
  "fields": [
   {
@@ -123,14 +127,34 @@
   {
    "fieldname": "cashier",
    "fieldtype": "Data",
-   "label": "Cashier Code",
-   "reqd": 1
+   "label": "Cashier Code"
+  },
+  {
+   "fieldname": "section_break_d55g3",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "amount_in_words",
+   "fieldtype": "Small Text",
+   "label": "Amount in Words",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sage_entry_tab",
+   "fieldtype": "Tab Break",
+   "label": "Sage Entry"
+  },
+  {
+   "fieldname": "sage_payment_number",
+   "fieldtype": "Data",
+   "label": "Sage Payment Number"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-18 13:01:27.816322",
+ "modified": "2024-04-20 09:34:11.897729",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Salary Withdrawals",

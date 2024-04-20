@@ -8,7 +8,7 @@ import pymssql
 
 def define_header_xml():
     client = zeep.Client('http://dc7-web.marsavco.com:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl')
-    client.transport.session.auth = requests.auth.HTTPBasicAuth('erpnext', 'Xn5uFLyR')
+    client.transport.session.auth = requests.auth.HTTPBasicAuth('kossivi', 'A2ggrb012345-')
     # Set up context
     CContext = {
         'codeLang': 'ENG',
@@ -64,3 +64,4 @@ def create_salary_withdrawal(name,public_name='ZPAY'):
     result = data.resultXml
     xmlInput2 = ET.fromstring(result)
     code = xmlInput2.findall(".//GRP[@ID='PAY0_1']/FLD[@NAME='NUM']")[0].text
+    return code
