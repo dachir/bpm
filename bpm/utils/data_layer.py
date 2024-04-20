@@ -8,7 +8,7 @@ import pymssql
 
 def define_header_xml():
     client = zeep.Client('http://dc7-web.marsavco.com:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl')
-    client.transport.session.auth = requests.auth.HTTPBasicAuth('kossivi', 'A2ggrb012345-')
+    client.transport.session.auth = requests.auth.HTTPBasicAuth('erpnext', 'Xn5uFLyR')
     # Set up context
     CContext = {
         'codeLang': 'ENG',
