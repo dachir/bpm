@@ -1,0 +1,182 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{YY}SUP{MM}{####}",
+ "creation": "2024-05-05 14:37:54.515610",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "supplier_type",
+  "column_break_y47th",
+  "supplier_code",
+  "section_break_lslsn",
+  "supplier_name",
+  "address",
+  "city",
+  "country",
+  "column_break_do6sn",
+  "contact_person",
+  "mobilephone",
+  "email",
+  "payment_details_section",
+  "currency",
+  "column_break_n2fjo",
+  "payment_terms",
+  "documents_section",
+  "tax_number",
+  "column_break_gjlyj",
+  "know_your_supplier_kys_documents_attached",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "supplier_type",
+   "fieldtype": "Select",
+   "label": "Supplier Type",
+   "options": "Local\nForeign"
+  },
+  {
+   "fieldname": "section_break_lslsn",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "supplier_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Supplier Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Country",
+   "options": "Country",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_do6sn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "mobilephone",
+   "fieldtype": "Phone",
+   "label": "Mobile/Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "payment_details_section",
+   "fieldtype": "Section Break",
+   "label": "Payment Details"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_n2fjo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_terms",
+   "fieldtype": "Select",
+   "label": "Payment Terms",
+   "options": "Advance\nCash on Delivery\n7 Days\n15 Days\n30 Days\n45 Days\n60 Days\n90 Days\n120 Days"
+  },
+  {
+   "fieldname": "documents_section",
+   "fieldtype": "Section Break",
+   "label": "Documents"
+  },
+  {
+   "description": "Please enter the Tax Number, in case of Local Supplier TVA Number or RCCM",
+   "fieldname": "tax_number",
+   "fieldtype": "Data",
+   "label": "Tax Number"
+  },
+  {
+   "fieldname": "column_break_gjlyj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Please attach the copy of KYS documents like Company Registration, VAT Number Certificate, Identity Document in case of individual",
+   "fieldname": "know_your_supplier_kys_documents_attached",
+   "fieldtype": "Check",
+   "label": "Know Your Supplier (KYS) Documents attached?"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "BPM Supplier Master Creation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_y47th",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "supplier_code",
+   "fieldtype": "Data",
+   "label": "Supplier Code",
+   "permlevel": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-05-05 14:39:49.222417",
+ "modified_by": "Administrator",
+ "module": "Business Process Management",
+ "name": "BPM Supplier Master Creation",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

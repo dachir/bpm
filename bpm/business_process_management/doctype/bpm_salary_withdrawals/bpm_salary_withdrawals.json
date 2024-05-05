@@ -79,6 +79,7 @@
   {
    "fieldname": "amount",
    "fieldtype": "Currency",
+   "in_list_view": 1,
    "label": "Amount",
    "reqd": 1
   },
@@ -95,6 +96,7 @@
    "fetch_from": "employee.employee_name",
    "fieldname": "employee_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Employee Name",
    "read_only": 1
   },
@@ -127,7 +129,8 @@
   {
    "fieldname": "cashier",
    "fieldtype": "Data",
-   "label": "Cashier Code"
+   "label": "Cashier Code",
+   "permlevel": 1
   },
   {
    "fieldname": "section_break_d55g3",
@@ -148,13 +151,14 @@
   {
    "fieldname": "sage_payment_number",
    "fieldtype": "Data",
-   "label": "Sage Payment Number"
+   "label": "Sage Payment Number",
+   "permlevel": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-20 09:34:11.897729",
+ "modified": "2024-05-05 14:43:14.219365",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Salary Withdrawals",

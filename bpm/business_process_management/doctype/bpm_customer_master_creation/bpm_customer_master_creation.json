@@ -1,0 +1,203 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{YY}CUS{MM}{####}",
+ "creation": "2024-05-05 13:56:39.212975",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "branch",
+  "column_break_6jgp9",
+  "customer_type",
+  "column_break_ibgku",
+  "channel",
+  "customer_code",
+  "customer_details_section",
+  "customer_name",
+  "address",
+  "column_break_n1fmv",
+  "contact_person",
+  "mobile_number",
+  "email",
+  "credit_limit_details_section",
+  "credit_limit",
+  "column_break_3fhux",
+  "currency",
+  "column_break_a6jsg",
+  "credit_period",
+  "documents_section",
+  "tax_number",
+  "column_break_i1mto",
+  "guarantee_documents_obtained_for_credit_limit",
+  "know_your_customer_kyc_documents_attached_",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Branch",
+   "options": "Branch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_6jgp9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Customer Type",
+   "options": "Client\nDistributor\nMobile Vehicle",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ibgku",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_code",
+   "fieldtype": "Data",
+   "label": "Customer Code",
+   "permlevel": 1
+  },
+  {
+   "fieldname": "customer_details_section",
+   "fieldtype": "Section Break",
+   "label": "Customer Details"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "column_break_n1fmv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contact_person",
+   "fieldtype": "Data",
+   "label": "Contact Person"
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Phone",
+   "label": "Mobile Number"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "credit_limit_details_section",
+   "fieldtype": "Section Break",
+   "label": "Credit Limit Details"
+  },
+  {
+   "fieldname": "credit_limit",
+   "fieldtype": "Currency",
+   "label": "Credit Limit"
+  },
+  {
+   "fieldname": "column_break_3fhux",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "column_break_a6jsg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "credit_period",
+   "fieldtype": "Select",
+   "label": "Credit Period",
+   "options": "\n7 Days\n15 Days\n30 Days\n60 Days\n90 Days\n120 Days"
+  },
+  {
+   "fieldname": "documents_section",
+   "fieldtype": "Section Break",
+   "label": "Documents"
+  },
+  {
+   "description": "Please enter VAT Number\nVeuillez saisir le num\u00e9ro de TVA",
+   "fieldname": "tax_number",
+   "fieldtype": "Data",
+   "label": "Tax Number"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "BPM Customer Master Creation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_i1mto",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "guarantee_documents_obtained_for_credit_limit",
+   "fieldtype": "Check",
+   "label": "Guarantee Documents obtained for Credit Limit?"
+  },
+  {
+   "default": "0",
+   "description": "Please attach RCCM, National Identification Document, DGI Letter for VAT Number, Identity Document in case of Individual",
+   "fieldname": "know_your_customer_kyc_documents_attached_",
+   "fieldtype": "Check",
+   "label": "Know Your Customer (KYC) Documents attached ?"
+  },
+  {
+   "fieldname": "channel",
+   "fieldtype": "Select",
+   "label": "Channel",
+   "options": "\n010 - Individuals\n020 - Retailer\n040 - Wholesaler\n044 - TMD\n045 - HOTEL,RESTAURANT,CAFE\n046 - PHARMACIE\n047 - BAKERY\n048 - COSMETICS\n049 - SUPERMARKET\n059 - RETAIL-SUPERMAKET"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-05-05 14:21:34.740709",
+ "modified_by": "Administrator",
+ "module": "Business Process Management",
+ "name": "BPM Customer Master Creation",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

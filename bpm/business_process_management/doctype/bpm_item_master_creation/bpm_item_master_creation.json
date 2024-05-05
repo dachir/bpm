@@ -1,0 +1,176 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{YY}ITM{MM}{####}",
+ "creation": "2024-05-05 13:08:53.911347",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item_details_tab",
+  "category_details_section",
+  "category",
+  "column_break_dnd2c",
+  "series",
+  "column_break_7wfe6",
+  "item_code_exist",
+  "item_code",
+  "item_details_section",
+  "description01",
+  "description02",
+  "description03",
+  "column_break_q85ao",
+  "item_specification",
+  "uom_section",
+  "unit_of_measure",
+  "column_break_2a6tv",
+  "alternate_unit_of_measure",
+  "column_break_hyznc",
+  "conversion_factor",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_details_tab",
+   "fieldtype": "Tab Break",
+   "label": "Item Details"
+  },
+  {
+   "fieldname": "category_details_section",
+   "fieldtype": "Section Break",
+   "label": "Category Details"
+  },
+  {
+   "fieldname": "category",
+   "fieldtype": "Link",
+   "label": "Category",
+   "options": "Item Group",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_dnd2c",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "series",
+   "fieldtype": "Data",
+   "label": "Series"
+  },
+  {
+   "fieldname": "column_break_7wfe6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "item_code_exist",
+   "fieldtype": "Check",
+   "label": "Item Code Exist?"
+  },
+  {
+   "fieldname": "item_details_section",
+   "fieldtype": "Section Break",
+   "label": "Item Details"
+  },
+  {
+   "fieldname": "description01",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Description01",
+   "length": 30,
+   "reqd": 1
+  },
+  {
+   "fieldname": "description02",
+   "fieldtype": "Data",
+   "label": "Description02",
+   "length": 30
+  },
+  {
+   "fieldname": "description03",
+   "fieldtype": "Data",
+   "label": "Description03",
+   "length": 30
+  },
+  {
+   "fieldname": "item_specification",
+   "fieldtype": "Small Text",
+   "label": "Item Specification"
+  },
+  {
+   "fieldname": "uom_section",
+   "fieldtype": "Section Break",
+   "label": "UOM"
+  },
+  {
+   "fieldname": "unit_of_measure",
+   "fieldtype": "Link",
+   "label": "Unit of Measure",
+   "options": "UOM",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_2a6tv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "alternate_unit_of_measure",
+   "fieldtype": "Link",
+   "label": "Alternate Unit of Measure",
+   "options": "UOM"
+  },
+  {
+   "fieldname": "column_break_hyznc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "conversion_factor",
+   "fieldtype": "Float",
+   "label": "Conversion Factor"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "BPM Item Master Creation",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_q85ao",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Data",
+   "label": "Item Code"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-05-05 13:18:58.556337",
+ "modified_by": "Administrator",
+ "module": "Business Process Management",
+ "name": "BPM Item Master Creation",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
