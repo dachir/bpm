@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:format:{YY}SAMP{MM}{####}",
+ "creation": "2024-05-06 10:32:10.417331",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "date",
+  "devise",
+  "mode",
+  "column_break_wh7z4",
+  "categorie",
+  "montant",
+  "section_break_ydt8h",
+  "description",
+  "details",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "default": "USD",
+   "fieldname": "devise",
+   "fieldtype": "Link",
+   "label": "Devise",
+   "options": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_wh7z4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "categorie",
+   "fieldtype": "Select",
+   "label": "Categorie",
+   "options": "Marketing\nRessource Humaine\nFinance"
+  },
+  {
+   "fieldname": "montant",
+   "fieldtype": "Currency",
+   "label": "Montant",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ydt8h",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description",
+   "max_height": "100px"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Table",
+   "label": "Details",
+   "options": "BPM Sampling Details"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "BPM Marketing Sampling",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "mode",
+   "fieldtype": "Select",
+   "label": "Mode",
+   "options": "Valeur\nPourcentage"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-05-06 12:14:53.844855",
+ "modified_by": "Administrator",
+ "module": "Business Process Management",
+ "name": "BPM Marketing Sampling",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

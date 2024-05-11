@@ -65,3 +65,20 @@ def create_salary_withdrawal(name,public_name='ZPAY'):
     xmlInput2 = ET.fromstring(result)
     code = xmlInput2.findall(".//GRP[@ID='PAY0_1']/FLD[@NAME='NUM']")[0].text
     return code
+
+
+def share_doc(doc):
+	if doc.workflow_state != "Draft":
+
+    users = frappe.db.sql(
+        """
+        SELECT DISTINCT h.parent
+        FROM `tabWorkflow Transition` t INNER JOIN tabRole r ON r.name = t.allowed INNER JOIN `tabHas Role` h ON h.role = r.name
+        WHERE t.parent = %s' AND t.state = %s
+        """, (doc.doctype, doc.workflow_state), as_dict =1
+    )
+    
+    #if not frappe.has_permission(doc=doc, ptype="submit", user=users[0].parent):
+    frappe.share.add_docshare(
+    	doc.doctype, doc.name, users[0].parent, submit=1, flags={"ignore_share_permission": True}
+    )

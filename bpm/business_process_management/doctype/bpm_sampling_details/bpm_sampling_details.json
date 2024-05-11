@@ -1,0 +1,71 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-05-06 10:23:45.230657",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "item",
+  "qty",
+  "rate",
+  "amount",
+  "marque",
+  "type",
+  "ratio"
+ ],
+ "fields": [
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Article",
+   "options": "Item"
+  },
+  {
+   "fieldname": "qty",
+   "fieldtype": "Int",
+   "label": "Qt\u00e9"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Float",
+   "label": "Prix"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Montant",
+   "read_only": 1
+  },
+  {
+   "fieldname": "marque",
+   "fieldtype": "Select",
+   "label": "Marque",
+   "options": "\nBBCMAR\nBBMARG\nBONVEG\nBRIPOW\nBRISOA\nCORMCO\nGUVKIN\nHARMO\nLCODWA\nLCOSOA\nMGGABC\nMGGALC\nMGGBEB\nMGGDES\nMGGHSA\nMGGHWA\nMGGHYG\nMGGMED\nMGGMOS\nMGGPMD\nMINAFO\nMINAGR\nMINCAR\nMINCOE\nMINECO\nMINENV\nMINFIN\nMINHYD\nMININD\nMININT\nMINPFI\nMINPTT\nMINRSC\nMINSPU\nMINTPS\nMINTRA\nMINUHA\nSIMNDL\nSIMOIL\nSUMDET\nSUMJAV\nSUMPOW\nVIMPOW"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "\nATDIFBILBO\nATDIFDIGIT\nATDIFPRINT\nATDIFRADIO\nATDIFTELE\nATDIFTHEAT\nATGONDOLA\nATPROBILBO\nATPRODIGIT\nATPRORADIO\nATPROTELE\nBTPRINFLYR\nBTPRINPOST\nBTPRINSTIK\nBTPROGGMAR\nBTPROGIFTS\nBTPROJAMAR\nBTPROKINMR\nBTPROMCONS\nBTPROMEVNT\nBTPROMSGXY\nBTPROMSHOP\nBTPROMSPKT\nBTPROMSURV\nBTPRORAGMA\nBTPROSHOPR\nBTPROSKSMA\nBTSPOEVENT\nBTSPOMEDIA\nBTSURVEYS"
+  },
+  {
+   "fieldname": "ratio",
+   "fieldtype": "Percent",
+   "label": "Ratio (%)",
+   "precision": "2"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-05-06 13:02:55.779282",
+ "modified_by": "Administrator",
+ "module": "Business Process Management",
+ "name": "BPM Sampling Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
