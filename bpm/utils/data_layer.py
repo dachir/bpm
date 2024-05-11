@@ -81,3 +81,4 @@ def share_doc(doc):
         frappe.share.add_docshare(
             doc.doctype, doc.name, users[0].parent, submit=1, flags={"ignore_share_permission": True}
         )
+        frappe.db.commit()
