@@ -10,8 +10,6 @@ class BPMSalaryWithdrawals(Document):
 
 	def before_save(self):
 		self.amount_in_words = money_in_words(self.amount, self.currency)
-
-	def after_save(self):
 		share_doc(self)
 	
 	def on_submit(self):
