@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:format:{YY}SAMP{MM}{####}",
+ "autoname": "format:{YY}SAMP{MM}{####}",
  "creation": "2024-05-06 10:32:10.417331",
  "default_view": "List",
  "doctype": "DocType",
@@ -11,14 +11,20 @@
   "date",
   "mode",
   "devise",
+  "reference",
   "column_break_wh7z4",
   "branch",
   "categorie",
   "montant",
+  "cost_center",
+  "account",
   "section_break_ydt8h",
   "description",
   "details",
-  "amended_from"
+  "amended_from",
+  "section_break_kxf6y",
+  "sage_order",
+  "note_credit"
  ],
  "fields": [
   {
@@ -40,9 +46,9 @@
   },
   {
    "fieldname": "categorie",
-   "fieldtype": "Select",
+   "fieldtype": "Link",
    "label": "Categorie",
-   "options": "Marketing\nRessource Humaine\nFinance"
+   "options": "BPM Sampling Account"
   },
   {
    "fieldname": "montant",
@@ -86,12 +92,49 @@
    "fieldtype": "Link",
    "label": "Branch",
    "options": "Branch"
+  },
+  {
+   "fieldname": "reference",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sage Reference",
+   "length": 30,
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_kxf6y",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sage_order",
+   "fieldtype": "Data",
+   "label": "Sage Order",
+   "read_only": 1
+  },
+  {
+   "fieldname": "note_credit",
+   "fieldtype": "Data",
+   "label": "Note Credit",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "categorie.account",
+   "fieldname": "account",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Account"
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-05-16 10:12:22.254349",
+ "modified": "2024-05-17 09:07:10.731893",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Marketing Sampling",

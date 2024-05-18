@@ -68,7 +68,7 @@ def create_salary_withdrawal(name,public_name='ZPAY'):
 
 
 def share_doc(doc):
-    if doc.workflow_state != "Draft":
+    if not doc.workflow_state in ["Draft","Rejected"]:
         users = frappe.db.sql(
             """
             SELECT DISTINCT h.parent
