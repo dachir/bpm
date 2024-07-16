@@ -78,7 +78,8 @@ def share_doc(doc):
         )
 
         #if not frappe.has_permission(doc=doc, ptype="submit", user=users[0].parent):
-        frappe.share.add_docshare(
-            doc.doctype, doc.name, users[0].parent, submit=1, flags={"ignore_share_permission": True}
-        )
-        frappe.db.commit()
+        for user in users:
+            frappe.share.add_docshare(
+                doc.doctype, doc.name, user.parent, submit=1, flags={"ignore_share_permission": True}
+            )
+            frappe.db.commit()
