@@ -73,7 +73,7 @@ def share_doc(doc):
             """
             SELECT DISTINCT h.parent
             FROM `tabWorkflow Transition` t INNER JOIN tabRole r ON r.name = t.allowed INNER JOIN `tabHas Role` h ON h.role = r.name
-            WHERE t.parent = %s AND t.state = %s AND parenttype = 'User'
+            WHERE t.parent = %s AND t.state = %s AND h.parenttype = 'User'
             """, (doc.doctype, doc.workflow_state), as_dict =1
         )
 
