@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-11-07 11:03:13.889431",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "doctype_1",
+  "group_1",
+  "doctype_2",
+  "group_2",
+  "rate",
+  "amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "doctype_1",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Doctype 1",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "group_1",
+   "fieldtype": "Dynamic Link",
+   "label": "Group 1",
+   "options": "doctype_1"
+  },
+  {
+   "fieldname": "doctype_2",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "label": "Doctype 2",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "group_2",
+   "fieldtype": "Dynamic Link",
+   "label": "Group 2",
+   "options": "doctype_2"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Percent",
+   "label": "Rate (%)",
+   "read_only_depends_on": "eval:doc.category == \"Transport - Staff\""
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "options": "currency"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2024-11-25 10:26:52.854098",
+ "modified_by": "Administrator",
+ "module": "Business Process Management",
+ "name": "BPM Expense Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

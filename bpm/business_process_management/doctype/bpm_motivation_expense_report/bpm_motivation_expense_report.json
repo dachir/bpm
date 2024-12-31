@@ -1,0 +1,173 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{YY}EXP{MM}{#####}",
+ "creation": "2024-11-26 12:12:06.855718",
+ "default_view": "List",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "expense_tab",
+  "section_break_lvvh",
+  "company",
+  "date",
+  "description",
+  "purchase_invoice",
+  "column_break_tdbu",
+  "branch",
+  "currency",
+  "amount",
+  "amount_letter",
+  "section_break_xmge",
+  "cost_center",
+  "column_break_alyk",
+  "ministry",
+  "column_break_fodo",
+  "direction",
+  "section_break_ytvj",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "expense_tab",
+   "fieldtype": "Tab Break",
+   "label": "Expense"
+  },
+  {
+   "fieldname": "section_break_lvvh",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description",
+   "max_height": "100px",
+   "reqd": 1
+  },
+  {
+   "fieldname": "purchase_invoice",
+   "fieldtype": "Link",
+   "label": "Purchase Invoice",
+   "options": "Purchase Invoice",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_tdbu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Branch",
+   "reqd": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "label": "Amount",
+   "non_negative": 1,
+   "options": "currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amount_letter",
+   "fieldtype": "Small Text",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_xmge",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "cost_center",
+   "fieldtype": "Link",
+   "label": "Cost Center",
+   "options": "Cost Center"
+  },
+  {
+   "fieldname": "column_break_alyk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_fodo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ministry",
+   "fieldtype": "Link",
+   "label": "Ministry",
+   "options": "Ministry"
+  },
+  {
+   "fieldname": "direction",
+   "fieldtype": "Link",
+   "label": "Direction",
+   "options": "Direction"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "BPM Motivation Expense Report",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_ytvj",
+   "fieldtype": "Section Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-11-26 12:34:48.708612",
+ "modified_by": "Administrator",
+ "module": "Business Process Management",
+ "name": "BPM Motivation Expense Report",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
