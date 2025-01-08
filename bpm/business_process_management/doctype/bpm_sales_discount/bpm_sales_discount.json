@@ -1,0 +1,152 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-01-02 09:18:23.913043",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "date_request",
+  "begin",
+  "target",
+  "column_break_orvw",
+  "customer",
+  "end",
+  "section_break_zsub",
+  "targets",
+  "column_break_oygp",
+  "section_break_bthi",
+  "payment_usd",
+  "column_break_ldzt",
+  "payment_cdf",
+  "section_break_gaji",
+  "details",
+  "section_break_shbc",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_shbc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "BPM Sales Discount",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "date_request",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Request",
+   "reqd": 1
+  },
+  {
+   "fieldname": "begin",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Begin",
+   "reqd": 1
+  },
+  {
+   "default": "250000",
+   "fieldname": "target",
+   "fieldtype": "Currency",
+   "label": "Target($)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_orvw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_zsub",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "targets",
+   "fieldtype": "Table",
+   "label": "Targets",
+   "options": "BPM Sales Discount Targets"
+  },
+  {
+   "fieldname": "column_break_oygp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_bthi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "payment_usd",
+   "fieldtype": "Table",
+   "label": "Payment USD",
+   "options": "BPM Sales Discount Payments"
+  },
+  {
+   "fieldname": "column_break_ldzt",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payment_cdf",
+   "fieldtype": "Table",
+   "label": "Payment CDF",
+   "options": "BPM Sales Discount Payments"
+  },
+  {
+   "fieldname": "section_break_gaji",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Table",
+   "label": "Details",
+   "options": "BPM Sales Discount Detail"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-01-02 14:34:58.388954",
+ "modified_by": "Administrator",
+ "module": "Business Process Management",
+ "name": "BPM Sales Discount",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -17,7 +17,7 @@ class BPMExpenseReport(Document):
 		self.amount_letter = money_in_words(self.amount, self.currency)
 		if self.nature == "Motivation":
 			frappe.throw("Invalid Nature")
-		#share_doc(self)
+		share_doc(self)
 	
 	def on_submit(self):
 		purchase_invoice_name = self.create_purchase_invoice()

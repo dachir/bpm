@@ -1,0 +1,59 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-01-02 12:39:30.781598",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "sales_discounts_section",
+  "usd_rate",
+  "column_break_yxye",
+  "cdf_rate"
+ ],
+ "fields": [
+  {
+   "fieldname": "sales_discounts_section",
+   "fieldtype": "Section Break",
+   "label": "Sales Discounts"
+  },
+  {
+   "fieldname": "usd_rate",
+   "fieldtype": "Float",
+   "label": "USD rate (%)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_yxye",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cdf_rate",
+   "fieldtype": "Float",
+   "label": "CDF rate (%)",
+   "precision": "2"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-01-02 12:43:37.274302",
+ "modified_by": "Administrator",
+ "module": "Business Process Management",
+ "name": "BPM Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
