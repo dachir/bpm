@@ -5,6 +5,7 @@ import xml.etree.ElementTree as ET
 from frappe.utils import getdate
 import json
 import pymssql
+from frappe.model.workflow import get_workflow_safe_globals
 
 def define_header_xml():
     client = zeep.Client('http://dc7-web.marsavco.com:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl')
@@ -83,3 +84,60 @@ def share_doc(doc):
                 doc.doctype, doc.name, user.parent, submit=1, flags={"ignore_share_permission": True}
             )
             frappe.db.commit()
+
+def send_email(email, doctype, docname):
+    frappe.sendmail(
+        recipients=email,
+        subject = f"{doctype} [{docname}]",
+        message = f"""
+        <p>The document <b>{docname}</b> requires your appoval.</p>
+        <p><a href="{frappe.utils.get_url_to_form(doctype, docname)}">View Document</a></p>
+        """
+    )
+
+def share_doc_2(doc):
+    if doc.workflow_state not in ["Draft", "Rejected"]:
+        # Fetch custom role formula
+        formulas = frappe.db.sql(
+            """
+            SELECT t.custom_role_formula
+            FROM `tabWorkflow Transition` t 
+            WHERE t.parent = %s AND t.state = %s AND t.action = 'Approve'
+            """,
+            (doc.doctype, doc.workflow_state),
+            as_dict=True
+        )
+
+        if not formulas or not formulas[0].get("custom_role_formula"):
+            frappe.throw("No valid custom role formula found for this workflow state.")
+
+        # Evaluate the formula with restricted globals
+        role = frappe.safe_eval(
+            formulas[0].get("custom_role_formula"),
+            get_workflow_safe_globals(), dict(doc=doc.as_dict())
+        )
+
+        # Fetch emails of users with the specified role
+        emails = frappe.db.sql(
+            """
+            SELECT u.name AS email
+            FROM `tabUser` u 
+            INNER JOIN `tabHas Role` r ON r.parent = u.name
+            WHERE r.role = %s
+            """,
+            (role,),
+            as_dict=True
+        )
+
+        # Share the document with users
+        for email_entry in emails:
+            email = email_entry.get("email")
+            frappe.share.add_docshare(
+                doc.doctype, doc.name, email, submit=1, flags={"ignore_share_permission": True}
+            )
+
+            send_email(email, doc.doctype, doc.name)
+
+
+        # Commit the changes
+        frappe.db.commit()
