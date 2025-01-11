@@ -5,11 +5,11 @@ import frappe
 from frappe.model.document import Document
 from sage_integration.utils.soap_ws import create_sales_order, create_credit_note
 from frappe.utils import flt, money_in_words
-from bpm.utils.data_layer import share_doc
+from bpm.utils.data_layer import share_doc_2
 
 class BPMMarketingSampling(Document):
 	def before_save(self):
-		share_doc(self)
+		share_doc_2(self)
 
 	def on_submit(self):
 		if self.mode == "Echantillon":

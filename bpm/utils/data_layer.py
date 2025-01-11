@@ -100,7 +100,7 @@ def share_doc_2(doc):
         # Fetch custom role formula
         formulas = frappe.db.sql(
             """
-            SELECT t.custom_role_formula
+            SELECT t.custom_role_formula, t.custom_role
             FROM `tabWorkflow Transition` t 
             WHERE t.parent = %s AND t.state = %s AND t.action = 'Approve'
             """,
@@ -112,10 +112,14 @@ def share_doc_2(doc):
             frappe.throw("No valid custom role formula found for this workflow state.")
 
         # Evaluate the formula with restricted globals
-        role = frappe.safe_eval(
-            formulas[0].get("custom_role_formula"),
-            get_workflow_safe_globals(), dict(doc=doc.as_dict())
-        )
+        role = ""
+        if formulas[0].get("custom_role"):
+            role = formulas[0].get("custom_role")
+        else:
+            role = frappe.safe_eval(
+                formulas[0].get("custom_role_formula"),
+                get_workflow_safe_globals(), dict(doc=doc.as_dict())
+            )
 
         # Fetch emails of users with the specified role
         emails = frappe.db.sql(
@@ -137,7 +141,4 @@ def share_doc_2(doc):
             )
 
             send_email(email, doc.doctype, doc.name)
-
-
-        # Commit the changes
-        frappe.db.commit()
+            

@@ -8,14 +8,14 @@ import erpnext
 from erpnext.accounts.general_ledger import make_gl_entries
 from erpnext.accounts.party import get_party_account
 from erpnext.setup.utils import get_exchange_rate
-from bpm.utils.data_layer import share_doc
+from bpm.utils.data_layer import share_doc_2
 
 
 class BPMMarketingOperations(Document):
 
 	def before_save(self):
 		self.amount_letter = money_in_words(self.amount, self.currency)
-		share_doc(self)
+		share_doc_2(self)
 	
 	def on_submit(self):
 		purchase_invoice_name = self.create_purchase_invoice()
