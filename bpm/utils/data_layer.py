@@ -108,9 +108,6 @@ def share_doc_2(doc):
             as_dict=True
         )
 
-        if not formulas or not formulas[0].get("custom_role_formula"):
-            frappe.throw("No valid custom role formula found for this workflow state.")
-
         # Evaluate the formula with restricted globals
         role = ""
         if formulas[0].get("custom_role"):
