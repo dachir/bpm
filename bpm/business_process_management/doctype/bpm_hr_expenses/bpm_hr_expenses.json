@@ -32,9 +32,7 @@
   "payment_terms_template",
   "payment_schedule",
   "details_section",
-  "details",
-  "section_break_rbqe",
-  "amended_from"
+  "details"
  ],
  "fields": [
   {
@@ -153,26 +151,6 @@
    "options": "BPM Expense Details"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "BPM Marketing Operations",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "BPM Marketing Operations",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "fieldname": "category",
    "fieldtype": "Link",
    "label": "Category",
@@ -184,10 +162,6 @@
    "label": "Nature",
    "options": "Expense Nature",
    "reqd": 1
-  },
-  {
-   "fieldname": "section_break_rbqe",
-   "fieldtype": "Section Break"
   },
   {
    "fieldname": "cost_center",
@@ -217,7 +191,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-25 16:51:53.891822",
+ "modified": "2025-01-12 17:02:02.387844",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM HR Expenses",
