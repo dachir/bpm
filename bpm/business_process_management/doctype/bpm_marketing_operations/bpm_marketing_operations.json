@@ -31,8 +31,7 @@
   "payment_schedule",
   "details_section",
   "details",
-  "details_tab",
-  "amended_from"
+  "details_tab"
  ],
  "fields": [
   {
@@ -99,16 +98,6 @@
    "reqd": 1
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "BPM Marketing Operations",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "depends_on": "eval:doc.category == \"Transport - Staff\" || doc.category == \"Marketing Operations\"",
    "fieldname": "details_tab",
    "fieldtype": "Tab Break",
@@ -119,16 +108,6 @@
    "fieldtype": "Table",
    "label": "Details",
    "options": "BPM Expense Details"
-  },
-  {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "BPM Marketing Operations",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
   },
   {
    "fieldname": "mois",
@@ -203,7 +182,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-01-12 18:34:00.522427",
+ "modified": "2025-01-12 19:14:16.319458",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Marketing Operations",
