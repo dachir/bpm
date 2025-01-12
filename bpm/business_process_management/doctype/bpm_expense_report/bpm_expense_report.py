@@ -36,7 +36,7 @@ class BPMExpenseReport(Document):
 				"bill_date": due_date,
 				"company": self.company,
 				"currency": self.currency,
-				"taxes_and_charges": "TVA ON PURCHASE - MCO",
+				#"taxes_and_charges": "TVA ON PURCHASE - MCO",
 				#"payment_terms_template": "50% after 7 Days - 50% after 30 Day",
 				"branch": self.branch,
 				"cost_center": self.cost_center
