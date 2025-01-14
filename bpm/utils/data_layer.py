@@ -95,6 +95,7 @@ def send_email(email, doctype, docname):
         """
     )
 
+@frappe.whitelist()
 def share_doc_2(doc):
     if doc.workflow_state not in ["Draft", "Rejected"]:
         # Fetch custom role formula
