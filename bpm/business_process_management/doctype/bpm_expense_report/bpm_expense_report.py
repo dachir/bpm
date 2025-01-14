@@ -39,11 +39,12 @@ class BPMExpenseReport(Document):
 				#"taxes_and_charges": "TVA ON PURCHASE - MCO",
 				#"payment_terms_template": "50% after 7 Days - 50% after 30 Day",
 				"branch": self.branch,
-				"cost_center": self.cost_center
+				"cost_center": self.cost_center,
+				"wf_user": frappe.session.user,
 			}))
 
 			if self.payment_terms_template :
-				purchase_invoice.update({ "payment_terms_template": "50% after 7 Days - 50% after 30 Day", })
+				purchase_invoice.update({ "payment_terms_template": self.payment_terms_template, })
 
 
 			account = frappe.db.get_value("Expense Nature", self.nature, "account")
