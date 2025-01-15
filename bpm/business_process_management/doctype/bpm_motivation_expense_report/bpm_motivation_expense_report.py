@@ -34,7 +34,8 @@ class BPMMotivationExpenseReport(Document):
 				"company": self.company,
 				"currency": self.currency,
 				"branch": self.branch,
-				"cost_center": self.cost_center
+				"cost_center": self.cost_center,
+				"wf_user": frappe.session.user,
 			}))
 
 

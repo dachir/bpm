@@ -13,6 +13,7 @@ class BPMSalaryWithdrawals(Document):
 		share_doc_2(self)
 	
 	def on_submit(self):
+		pass
 		code = create_salary_withdrawal(self.name)
 		frappe.db.set_value(self.doctype,self.name,'sage_payment_number',code)
 

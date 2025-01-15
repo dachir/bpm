@@ -118,6 +118,7 @@ class BPMMarketingOperations(Document):
 				#"payment_terms_template": "50% after 7 Days - 50% after 30 Day",
 				"branch": self.branch,
 				"cost_center": "CC013 - Marketing - MCO",
+				"wf_user": frappe.session.user,
 			}))
 
 			if self.payment_terms_template :

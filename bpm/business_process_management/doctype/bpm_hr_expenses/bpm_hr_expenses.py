@@ -39,6 +39,7 @@ class BPMHRExpenses(Document):
 				#"taxes_and_charges": "TVA ON PURCHASE - MCO",
 				#"payment_terms_template": "50% after 7 Days - 50% after 30 Day",
 				"branch": self.branch,
+				"wf_user": frappe.session.user,
 			}))
 
 			if self.category != "Rémunérations et Avantages":
