@@ -40,7 +40,7 @@ class BPMMotivationExpenseReport(Document):
 
 
 			account = "63280300 - Business expenses - MCO"
-			item_name = f"{self.description} {self.direction} {self.ministry}"[:256]  # First 256 characters for item_name
+			item_name = f"{self.direction} {self.ministry} {self.description}"[:100]  # First 256 characters for item_name
 			description = self.description  # Full description
 
 			item_data = frappe._dict({
