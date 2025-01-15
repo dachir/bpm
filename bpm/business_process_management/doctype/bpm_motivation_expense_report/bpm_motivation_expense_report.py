@@ -56,12 +56,12 @@ class BPMMotivationExpenseReport(Document):
 
 			purchase_invoice.append("items", item_data)
 
-			max_due_date = max(
-				[getdate(row.due_date) for row in self.payment_schedule if row.due_date],
-				default=due_date
-			)
+			#max_due_date = max(
+			#	[getdate(row.due_date) for row in self.payment_schedule if row.due_date],
+			#	default=due_date
+			#)
 
-			purchase_invoice.update({ "due_date": max_due_date, })
+			purchase_invoice.update({ "due_date": due_date, })
 			# Insert and Submit the Purchase Invoice
 			purchase_invoice.insert()
 

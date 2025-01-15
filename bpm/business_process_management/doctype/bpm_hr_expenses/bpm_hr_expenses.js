@@ -6,7 +6,7 @@ frappe.ui.form.on("BPM HR Expenses", {
         frm.set_query('category', function () {
             return {
                 filters: {
-                    description: ['in', ['Santé et Frais Sanitaires', 'Rémunérations et Avantages', 'Transport et Véhicules']]
+                    description: ['in', ['Santé et Frais Sanitaires', 'Rémunérations et Avantages', 'Transport et Véhicules', 'Voyages et Déplacements']]
                 }
             };
         });
@@ -19,13 +19,13 @@ frappe.ui.form.on("BPM HR Expenses", {
         });
         frm.refresh_field("nature");
 
-        frm.toggle_display("details_section",false);
+        /*frm.toggle_display("details_section",false);
         if (frm.doc.category == "Transport et Véhicules"){
             frm.set_df_property('vehicle', 'read_only', 0);
         }
         else{
             frm.set_df_property('vehicle', 'read_only', 1);
-        }
+        }*/
     },
     refresh(frm) {
         // Iterate through the child table rows and change the label
