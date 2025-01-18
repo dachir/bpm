@@ -34,7 +34,7 @@ frappe.ui.form.on("BPM HR Expenses", {
         // Hide the 'rate' column in the grid of the child table 'items'
         frm.fields_dict['details'].grid.set_column_disp('rate', false);
         // Disable the 'items' grid (child table)
-        frm.fields_dict['details'].grid.set_read_only(true);
+        //frm.fields_dict['details'].grid.set_read_only(true);
 
         // Refresh the child table to apply changes
         frm.refresh_field('details');
@@ -56,7 +56,7 @@ frappe.ui.form.on("BPM HR Expenses", {
             frm.set_value('vehicle', null);
         }
     },
-    nature: function (frm) {
+    /*nature: function (frm) {
         if (frm.doc.nature == "Transport Staff"){
             frm.toggle_display("details_section",true);
         }
@@ -65,7 +65,7 @@ frappe.ui.form.on("BPM HR Expenses", {
             frm.clear_table('details');
             frm.refresh_field('details');
         }
-    },
+    },*/
     payment_terms_template: function (frm) {
         if (frm.doc.payment_terms_template) {
             frappe.call({
@@ -125,8 +125,8 @@ frappe.ui.form.on('BPM Expense Details', {
 	},
 });
 
-frappe.ui.form.on("BPM HR Expenses","refresh", function(frm, cdt, cdn) { 
+/*frappe.ui.form.on("BPM HR Expenses","refresh", function(frm, cdt, cdn) { 
 	df = frappe.meta.get_docfield("BPM Expense Details","rate", frm.doc.name);
 	df.hidden = 1;
-});
+});*/
 
