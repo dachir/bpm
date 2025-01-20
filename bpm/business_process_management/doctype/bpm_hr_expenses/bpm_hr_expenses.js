@@ -32,9 +32,8 @@ frappe.ui.form.on("BPM HR Expenses", {
         frm.fields_dict['details'].grid.header_row.columns.group_1.df.label = 'Cost Center';
         frm.fields_dict['details'].grid.header_row.columns.group_2.df.label = 'Employee';
         // Hide the 'rate' column in the grid of the child table 'items'
-        frm.fields_dict['details'].grid.set_column_disp('rate', false);
-        // Disable the 'items' grid (child table)
-        //frm.fields_dict['details'].grid.set_read_only(true);
+        frm.fields_dict['details'].grid.set_column_disp('rate', false);           
+        
 
         // Refresh the child table to apply changes
         frm.refresh_field('details');
@@ -55,6 +54,7 @@ frappe.ui.form.on("BPM HR Expenses", {
             frm.set_df_property('vehicle', 'read_only', 1);
             frm.set_value('vehicle', null);
         }
+        frm.fields_dict['details'].grid.update_docfield_property("group_2", "label", frm.doc.category === "Transport et Véhicules" ? "Vehicule" : "Employee");
     },
     /*nature: function (frm) {
         if (frm.doc.nature == "Transport Staff"){
@@ -116,10 +116,19 @@ frappe.ui.form.on('BPM Expense Details', {
 	details_add(frm, cdt, cdn) {
 		var row = locals[cdt][cdn]; 
         row.doctype_1 = "Cost Center";
-        row.doctype_2 = "Employee";
+        row.doctype_2 = frm.doc.category === "Transport et Véhicules" ? "Vehicle" : "Employee";
         if(frm.doc.cost_center != null){
             row.group_1 = frm.doc.cost_center;
             frm.refresh_field('group_1');
+        }
+
+        if(frm.doc.employee != null && frm.doc.category !== "Transport et Véhicules"){
+            row.group_2 = frm.doc.employee;
+            frm.refresh_field('group_2');
+        }
+        if(frm.doc.vehicle != null && frm.doc.category === "Transport et Véhicules"){
+            row.group_2 = frm.doc.vehicle;
+            frm.refresh_field('group_2');
         }
         
 	},
