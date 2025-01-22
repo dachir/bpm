@@ -42,8 +42,8 @@ class BPMHRExpenses(Document):
 				"wf_user": frappe.session.user,
 			}))
 
-			if self.category != "Rémunérations et Avantages":
-				purchase_invoice.update({ "taxes_and_charges": "TVA ON PURCHASE - MCO" })
+			#if self.category != "Rémunérations et Avantages":
+			#	purchase_invoice.update({ "taxes_and_charges": "TVA ON PURCHASE - MCO" })
 
 			if self.category == "Transport et Véhicules":
 				purchase_invoice.update({ "vehicle": self.vehicle })
