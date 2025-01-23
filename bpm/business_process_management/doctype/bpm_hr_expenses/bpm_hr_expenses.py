@@ -50,7 +50,7 @@ class BPMHRExpenses(Document):
 
 
 			account = frappe.db.get_value("Expense Nature", self.nature, "account")
-			if self.nature == "Transport Staff":
+			if len(self.details) > 0:
 				purchase_invoice.update({ "cost_center": self.cost_center })
 				# Add child items from the `details` table
 				for line in self.details:
