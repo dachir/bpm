@@ -54,7 +54,7 @@ class BPMHRExpenses(Document):
 				purchase_invoice.update({ "cost_center": self.cost_center })
 				# Add child items from the `details` table
 				for line in self.details:
-					item_name = f"{self.description} {line.group_2} {line.group_1}"[:256]  # First 256 characters for item_name
+					item_name = f"{self.description} {line.group_2} {line.group_1}"[:100]  # First 256 characters for item_name
 					description = self.description  # Full description
 					
 					purchase_invoice.append("items", frappe._dict({

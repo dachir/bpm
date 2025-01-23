@@ -48,7 +48,7 @@ class BPMExpenseReport(Document):
 
 
 			account = frappe.db.get_value("Expense Nature", self.nature, "account")
-			item_name = self.description[:256]  # First 256 characters for item_name
+			item_name = self.description[:100]  # First 256 characters for item_name
 			description = self.description  # Full description
 
 			item_data = frappe._dict({
