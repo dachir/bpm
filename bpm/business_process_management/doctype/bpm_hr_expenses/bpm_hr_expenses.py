@@ -9,15 +9,18 @@ from erpnext.accounts.general_ledger import make_gl_entries
 from erpnext.accounts.party import get_party_account
 from erpnext.setup.utils import get_exchange_rate
 from bpm.utils.data_layer import share_doc_2
+from erp_space import erpspace
 
 
 class BPMHRExpenses(Document):
-	
+	def validate(self):
+		erpspace.share_doc(self)
+		
 	def before_save(self):
 		self.amount_letter = money_in_words(self.amount, self.currency)
 		if self.nature == "Motivation":
 			frappe.throw("Invalid Nature")
-		share_doc_2(self)
+		#share_doc_2(self)
 	
 	def on_submit(self):
 		purchase_invoice_name = self.create_purchase_invoice()
@@ -71,7 +74,7 @@ class BPMHRExpenses(Document):
 					}))
 			else:
 				purchase_invoice.update({ "cost_center": self.cost_center, "employee": self.employee, })
-				item_name = self.description[:256]  # First 256 characters for item_name
+				item_name = self.description[:100]  # First 256 characters for item_name
 				description = self.description  # Full description
 
 				item_data = frappe._dict({

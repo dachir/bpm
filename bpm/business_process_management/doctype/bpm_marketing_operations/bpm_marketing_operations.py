@@ -9,9 +9,13 @@ from erpnext.accounts.general_ledger import make_gl_entries
 from erpnext.accounts.party import get_party_account
 from erpnext.setup.utils import get_exchange_rate
 from bpm.utils.data_layer import share_doc_2
+from erp_space import erpspace
 
 
 class BPMMarketingOperations(Document):
+	def validate(self):
+		#share_doc_2(self)
+		erpspace.share_doc(self)
 
 	def before_save(self):
 		self.amount_letter = money_in_words(self.amount, self.currency)

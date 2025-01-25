@@ -6,7 +6,10 @@ from frappe.utils import getdate
 import json
 import pymssql
 from frappe.model.workflow import get_workflow_safe_globals
-#from erp_space import erpspace
+from erp_space import erpspace
+
+def share_document(doc, method):
+    erpspace.share_doc(doc)
 
 def define_header_xml():
     client = zeep.Client('http://dc7-web.marsavco.com:8124/soap-wsdl/syracuse/collaboration/syracuse/CAdxWebServiceXmlCC?wsdl')

@@ -6,11 +6,13 @@ from frappe import _
 from frappe.model.document import Document
 from erpnext.setup.utils import get_exchange_rate
 from bpm.utils.data_layer import share_doc_2
+from erp_space import erpspace
 
 
 class BPMSalesDiscount(Document):
-	def before_save(self):
-		share_doc_2(self)
+	def validate(self):
+		#share_doc_2(self)
+		erpspace.share_doc(self)
 
 	def on_save(self):
 		# Fetch USD and CDF rates from settings

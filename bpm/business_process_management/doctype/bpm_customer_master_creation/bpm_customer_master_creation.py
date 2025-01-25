@@ -4,7 +4,9 @@
 import frappe
 from frappe.model.document import Document
 from bpm.utils.data_layer import share_doc_2
+from erp_space import erpspace
 
 class BPMCustomerMasterCreation(Document):
-	def before_save(self):
-		share_doc_2(self)
+	def validate(self):
+		#share_doc_2(self)
+		erpspace.share_doc(self)

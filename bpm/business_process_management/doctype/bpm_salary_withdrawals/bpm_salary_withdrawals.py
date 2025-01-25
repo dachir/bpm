@@ -7,12 +7,14 @@ from bpm.utils.data_layer import create_salary_withdrawal, share_doc, share_doc_
 from erpnext.setup.utils import get_exchange_rate
 from frappe.utils import flt, money_in_words, nowdate
 from erpnext.accounts.general_ledger import make_gl_entries
+from erp_space import erpspace
 
 class BPMSalaryWithdrawals(Document):
 
 	def before_save(self):
 		self.amount_in_words = money_in_words(self.amount, self.currency)
-		share_doc_2(self)
+		#share_doc_2(self)
+		erpspace.share_doc(self)
 	
 	def on_submit(self):
 		#code = create_salary_withdrawal(self.name)
