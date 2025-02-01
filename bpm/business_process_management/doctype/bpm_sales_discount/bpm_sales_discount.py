@@ -66,11 +66,11 @@ class BPMSalesDiscount(Document):
 
 
 	@frappe.whitelist()
-	def fetch_payments(customer, targets):
+	def fetch_payments(customer):
 		payments_usd = []
 		payments_cdf = []
 
-		for target in targets:
+		for target in self.targets:
 			payments = frappe.get_all(
 				"Payment Entry",
 				filters={

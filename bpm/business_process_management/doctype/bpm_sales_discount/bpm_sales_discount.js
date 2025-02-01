@@ -12,7 +12,6 @@ frappe.ui.form.on("BPM Sales Discount", {
                         method: 'your_app_name.your_module_name.your_python_file.fetch_payments',
                         args: {
                             customer: frm.doc.customer,
-                            targets: frm.doc.targets
                         }
                     });
 
