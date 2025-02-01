@@ -66,51 +66,44 @@ class BPMSalesDiscount(Document):
 
 
 	@frappe.whitelist()
-	def fetch_payments(self):
-		# Clear existing data in payment tables
-		self.payment_usd = []
-		self.payment_cdf = []
+	def fetch_payments(customer, targets):
+		payments_usd = []
+		payments_cdf = []
 
-		total_usd = 0
-		total_cdf = 0
-
-		# Loop through targets and fetch payments for each period
-		for target in self.targets:
+		for target in targets:
 			payments = frappe.get_all(
-				"Payment Entry", 
+				"Payment Entry",
 				filters={
-					"party": self.customer,
-					"posting_date": ["between", [target.begin, target.end]]
+					"party": customer,
+					"posting_date": ["between", [target['begin'], target['end']]]
 				},
 				fields=["name", "posting_date", "paid_amount", "paid_to_account_currency"]
 			)
 
-			if not payments:
-				frappe.msgprint(_("No payments found for the target period from {0} to {1}.").format(target.begin, target.end))
-				continue
-
 			for payment in payments:
-				if payment.paid_to_account_currency == "USD":
-					self.append("payment_usd", {
-						"begin": target.begin,
-						"end": target.end,
-						"payment_entry": payment.name,
-						"date": payment.posting_date,
-						"amount": payment.paid_amount,
-						"currency": payment.paid_to_account_currency
+				if payment['paid_to_account_currency'] == "USD":
+					payments_usd.append({
+						"begin": target['begin'],
+						"end": target['end'],
+						"payment_entry": payment['name'],
+						"date": payment['posting_date'],
+						"amount": payment['paid_amount'],
+						"currency": payment['paid_to_account_currency']
 					})
-				elif payment.paid_to_account_currency == "CDF":
-					self.append("payment_cdf", {
-						"begin": target.begin,
-						"end": target.end,
-						"payment_entry": payment.name,
-						"date": payment.posting_date,
-						"amount": payment.paid_amount,
-						"currency": payment.paid_to_account_currency
+				elif payment['paid_to_account_currency'] == "CDF":
+					payments_cdf.append({
+						"begin": target['begin'],
+						"end": target['end'],
+						"payment_entry": payment['name'],
+						"date": payment['posting_date'],
+						"amount": payment['paid_amount'],
+						"currency": payment['paid_to_account_currency']
 					})
 
-		# Log the process for debugging or auditing
-		frappe.logger().info(f"Payments fetched for customer {self.customer}: USD={self.total_usd}, CDF={self.total_cdf}")
+		# Return results as a dictionary
+		return {
+			"payments_usd": payments_usd,
+			"payments_cdf": payments_cdf
+		}
 
-		return "Success"
 
