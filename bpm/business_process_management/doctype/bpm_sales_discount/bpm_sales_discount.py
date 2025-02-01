@@ -66,7 +66,7 @@ class BPMSalesDiscount(Document):
 
 
 	@frappe.whitelist()
-	def fetch_payments(customer):
+	def fetch_payments(self):
 		payments_usd = []
 		payments_cdf = []
 
@@ -74,8 +74,8 @@ class BPMSalesDiscount(Document):
 			payments = frappe.get_all(
 				"Payment Entry",
 				filters={
-					"party": customer,
-					"posting_date": ["between", [target['begin'], target['end']]]
+					"party": self.customer,
+					"posting_date": ["between", [target.begin, target.end]]
 				},
 				fields=["name", "posting_date", "paid_amount", "paid_to_account_currency"]
 			)

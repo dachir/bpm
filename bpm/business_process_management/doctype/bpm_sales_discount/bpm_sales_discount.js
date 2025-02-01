@@ -4,60 +4,56 @@
 frappe.ui.form.on("BPM Sales Discount", {
     refresh: function (frm) {
         if (!frm.is_new() && frm.doc.customer && frm.doc.targets && frm.doc.targets.length > 0) {
-            frm.add_custom_button(__('Fetch Payments'), async function () {
+            frm.add_custom_button(__('Fetch Payments'), function () {
                 frappe.show_alert({ message: __('Fetching payments...'), indicator: 'blue' });
 
-                try {
-                    let response = await frappe.call({
-                        method: 'your_app_name.your_module_name.your_python_file.fetch_payments',
-                        args: {
-                            customer: frm.doc.customer,
+                // Call server-side method with parameters
+                frm.call('fetch_payments')
+                    .then(response => {
+                        if (response.message) {
+                            let payments = response.message;
+
+                            // Clear existing tables
+                            frm.clear_table("payment_usd");
+                            frm.clear_table("payment_cdf");
+
+                            // Populate the payment_usd grid
+                            payments.payments_usd.forEach(payment => {
+                                frm.add_child("payment_usd", {
+                                    begin: payment.begin,
+                                    end: payment.end,
+                                    payment_entry: payment.payment_entry,
+                                    date: payment.date,
+                                    amount: payment.amount,
+                                    currency: payment.currency
+                                });
+                            });
+
+                            // Populate the payment_cdf grid
+                            payments.payments_cdf.forEach(payment => {
+                                frm.add_child("payment_cdf", {
+                                    begin: payment.begin,
+                                    end: payment.end,
+                                    payment_entry: payment.payment_entry,
+                                    date: payment.date,
+                                    amount: payment.amount,
+                                    currency: payment.currency
+                                });
+                            });
+
+                            // Refresh the fields to display updated tables
+                            frm.refresh_field("payment_usd");
+                            frm.refresh_field("payment_cdf");
+                            frappe.msgprint(__('Payments have been successfully fetched.'));
+                        } else {
+                            frappe.msgprint(__('No payments found.'));
                         }
+                    })
+                    .catch(error => {
+                        frappe.msgprint(__('An error occurred: ') + error.message);
+                        console.error('Error fetching payments:', error);
                     });
-
-                    if (response.message) {
-                        let payments = response.message;
-
-                        // Clear existing tables
-                        frm.clear_table("payment_usd");
-                        frm.clear_table("payment_cdf");
-
-                        // Populate the payment_usd grid
-                        payments.payments_usd.forEach(payment => {
-                            let row = frm.add_child("payment_usd", {
-                                begin: payment.begin,
-                                end: payment.end,
-                                payment_entry: payment.payment_entry,
-                                date: payment.date,
-                                amount: payment.amount,
-                                currency: payment.currency
-                            });
-                        });
-
-                        // Populate the payment_cdf grid
-                        payments.payments_cdf.forEach(payment => {
-                            let row = frm.add_child("payment_cdf", {
-                                begin: payment.begin,
-                                end: payment.end,
-                                payment_entry: payment.payment_entry,
-                                date: payment.date,
-                                amount: payment.amount,
-                                currency: payment.currency
-                            });
-                        });
-
-                        frm.refresh_field("payment_usd");
-                        frm.refresh_field("payment_cdf");
-                        frappe.msgprint(__('Payments have been successfully fetched.'));
-                    } else {
-                        frappe.msgprint(__('No payments found.'));
-                    }
-                } catch (error) {
-                    frappe.msgprint(__('An error occurred: ') + error.message);
-                    console.error('Error fetching payments:', error);
-                }
             });
         }
     }
 });
-
