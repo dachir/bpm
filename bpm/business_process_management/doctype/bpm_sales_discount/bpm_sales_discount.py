@@ -96,7 +96,7 @@ class BPMSalesDiscount(Document):
 						"end": target.end,
 						"payment_entry": payment.name,
 						"date": payment.posting_date,
-						"amount": payment.base_paid_amount,
+						"amount": payment.paid_amount,
 						"currency": payment.paid_to_account_currency
 					})
 				elif payment.paid_to_account_currency == "CDF":
