@@ -10,11 +10,11 @@ from erp_space import erpspace
 
 
 class BPMSalesDiscount(Document):
-	def validate(self):
+	#def validate(self):
 		#share_doc_2(self)
-		erpspace.share_doc(self)
+		#erpspace.share_doc(self)
 
-	def on_save(self):
+	def before_save(self):
 		# Fetch USD and CDF rates from settings
 		usd_rate = frappe.db.get_single_value('BPM Settings', 'usd_rate')
 		cdf_rate = frappe.db.get_single_value('BPM Settings', 'cdf_rate')
@@ -70,6 +70,9 @@ class BPMSalesDiscount(Document):
 		# Clear existing data in payment tables
 		self.payment_usd = []
 		self.payment_cdf = []
+
+		total_usd = 0
+		total_cdf = 0
 
 		# Loop through targets and fetch payments for each period
 		for target in self.targets:
