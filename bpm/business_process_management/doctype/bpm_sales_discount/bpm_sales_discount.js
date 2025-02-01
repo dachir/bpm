@@ -14,7 +14,9 @@ frappe.ui.form.on("BPM Sales Discount", {
                     .then(response => {
                         if (response.message === "Success") {
                             frappe.msgprint(__('Payments have been successfully fetched.'));
-                            frm.reload_doc(); // Reload document to reflect changes
+                            //frm.reload_doc(); // Reload document to reflect changes
+                            frm.refresh_field("payment_usd");
+                            frm.refresh_field("payment_cdf");
                         } else {
                             frappe.msgprint(__('Failed to fetch payments. Please check the server logs.'));
                         }
