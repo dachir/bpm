@@ -83,8 +83,8 @@ class BPMSalesDiscount(Document):
 			for payment in payments:
 				if payment['paid_to_account_currency'] == "USD":
 					payments_usd.append({
-						"begin": target['begin'],
-						"end": target['end'],
+						"begin": target.begin,
+						"end": target.end,
 						"payment_entry": payment['name'],
 						"date": payment['posting_date'],
 						"amount": payment['paid_amount'],
@@ -92,8 +92,8 @@ class BPMSalesDiscount(Document):
 					})
 				elif payment['paid_to_account_currency'] == "CDF":
 					payments_cdf.append({
-						"begin": target['begin'],
-						"end": target['end'],
+						"begin": target.begin,
+						"end": target.end,
 						"payment_entry": payment['name'],
 						"date": payment['posting_date'],
 						"amount": payment['paid_amount'],
