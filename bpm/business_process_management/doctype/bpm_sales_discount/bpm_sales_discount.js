@@ -3,7 +3,7 @@
 
 frappe.ui.form.on("BPM Sales Discount", {
     refresh: function (frm) {
-        if (!frm.is_new() && frm.doc.customer && frm.doc.targets && frm.doc.targets.length > 0) {
+        if (!frm.is_new() && frm.doc.docstatus === 0 && frm.doc.customer && frm.doc.targets && frm.doc.targets.length > 0) {
             frm.add_custom_button(__('Fetch Payments'), function () {
                 frappe.show_alert({ message: __('Fetching payments...'), indicator: 'blue' });
 
