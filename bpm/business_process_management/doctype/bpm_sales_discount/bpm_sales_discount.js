@@ -44,6 +44,7 @@ frappe.ui.form.on("BPM Sales Discount", {
                             // Refresh the fields to display updated tables
                             frm.refresh_field("payment_usd");
                             frm.refresh_field("payment_cdf");
+                            frm.refresh()
                             frappe.msgprint(__('Payments have been successfully fetched.'));
                         } else {
                             frappe.msgprint(__('No payments found.'));

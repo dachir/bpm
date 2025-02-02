@@ -1,15 +1,18 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "format:{YY}DIS{MM}{####}",
  "creation": "2025-01-02 09:18:23.913043",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
   "date_request",
+  "customer",
   "begin",
   "target",
   "column_break_orvw",
-  "customer",
+  "company",
+  "branch",
   "end",
   "section_break_zsub",
   "targets",
@@ -102,7 +105,8 @@
    "fieldname": "payment_usd",
    "fieldtype": "Table",
    "label": "Payment USD",
-   "options": "BPM Sales Discount Payments"
+   "options": "BPM Sales Discount Payments USD",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_ldzt",
@@ -112,7 +116,8 @@
    "fieldname": "payment_cdf",
    "fieldtype": "Table",
    "label": "Payment CDF",
-   "options": "BPM Sales Discount Payments"
+   "options": "BPM Sales Discount Payments CDF",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_gaji",
@@ -122,11 +127,13 @@
    "fieldname": "details",
    "fieldtype": "Table",
    "label": "Details",
-   "options": "BPM Sales Discount Detail"
+   "options": "BPM Sales Discount Detail",
+   "read_only": 1
   },
   {
    "fieldname": "total_usd",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Total USD",
    "options": "USD",
    "precision": "2",
@@ -135,19 +142,36 @@
   {
    "fieldname": "total_cdf",
    "fieldtype": "Currency",
+   "hidden": 1,
    "label": "Total CDF",
    "options": "CDF",
    "precision": "0",
    "read_only": 1
+  },
+  {
+   "default": "Marsavco SA",
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Branch",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-01 11:52:05.602860",
+ "modified": "2025-02-02 18:39:21.188367",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Sales Discount",
+ "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

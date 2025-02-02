@@ -102,13 +102,16 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
+doc_events = {
+    #"BPM Sales Discount": {
+    #    "before_delete": "bpm.business_process_management.doctype.bpm_sales_discount.bpm_sales_discount.before_delete"
+    #}
 #	"*": {
 #		"on_update": "method",
 #		"on_cancel": "method",
 #		"on_trash": "method"
 #	}
-# }
+}
 
 # Scheduled Tasks
 # ---------------
@@ -199,3 +202,8 @@ app_license = "MIT"
 # auth_hooks = [
 #	"bpm.auth.validate"
 # ]
+fixtures = [
+    {"dt": "Custom Field", "filters": [["module", "=", "Erpmco"]]},
+    {"dt": "Client Script", "filters": [["enabled", "=", 1],["module", "=", "Erpmco"]]},
+    {"dt": "Server Script", "filters": [["disabled", "=", 0],["module", "=", "Erpmco"]]},
+]
