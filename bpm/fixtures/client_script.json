@@ -1,0 +1,13 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Stock Entry",
+  "enabled": 1,
+  "modified": "2024-11-18 16:32:45.879579",
+  "module": "Business Process Management",
+  "name": "Stock entry Transfert Enable Quality Status",
+  "script": "frappe.ui.form.on('Stock Entry', {\n\trefresh(frm) {\n\t\tfrm.fields_dict.items.grid.toggle_enable('quality_status', true);\n\t}\n});\n\n",
+  "view": "Form"
+ }
+]

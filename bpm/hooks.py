@@ -203,7 +203,7 @@ doc_events = {
 #	"bpm.auth.validate"
 # ]
 fixtures = [
-    {"dt": "Custom Field", "filters": [["module", "=", "Erpmco"]]},
-    {"dt": "Client Script", "filters": [["enabled", "=", 1],["module", "=", "Erpmco"]]},
-    {"dt": "Server Script", "filters": [["disabled", "=", 0],["module", "=", "Erpmco"]]},
+    {"dt": "Custom Field", "filters": [["module", "=", "Business Process Management"]]},
+    {"dt": "Client Script", "filters": [["enabled", "=", 1],["module", "=", "Business Process Management"]]},
+    {"dt": "Server Script", "filters": [["disabled", "=", 0],["module", "=", "Business Process Management"]]},
 ]
