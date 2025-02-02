@@ -20,7 +20,6 @@ class BPMSalesDiscount(Document):
 
 	def validate(self):
 		self.validate_period_overlap()
-		share_doc_2(self)
 		erpspace.share_doc(self)
 
 	def before_save(self):
