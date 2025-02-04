@@ -68,7 +68,8 @@ class BPMHRExpenses(Document):
 						"amount": flt(line.amount, 2),
 						"conversion_factor": get_exchange_rate(self.currency, company_currency),
 						"cost_center": line.group_1,
-						"employee": line.group_2,
+						"employee": line.group_2 if line.doctype_2 == "Employee" else None,
+						"vehicle": line.group_2 if line.doctype_2 == "Vehicle" else None,
 						"branch": self.branch,
 						"expense_account": account,
 					}))
