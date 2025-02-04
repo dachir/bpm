@@ -57,7 +57,9 @@ class BPMSalesDiscount(Document):
 				discount = total_usd * usd_rate / 100  # Assuming rate is in percentage
 				self.add_discount_row(target, total_usd, discount, usd_rate, 'USD')
 			
-			if total_cdf >= target.target:
+			exchange_rate = get_exchange_rate("CDF", "USD") or 1
+
+			if total_cdf * exchange_rate >= target.target:
 				discount = total_cdf * cdf_rate / 100  # Assuming rate is in percentage
 				#exchange_rate = get_exchange_rate("CDF", "USD")
 				self.add_discount_row(target, total_cdf, discount, cdf_rate, 'CDF')
