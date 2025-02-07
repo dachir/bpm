@@ -51,18 +51,24 @@ class BPMSalesDiscount(Document):
 			# Get total for each currency in the period
 			total_usd = payment_totals.get(period_key, {}).get('USD', 0)
 			total_cdf = payment_totals.get(period_key, {}).get('CDF', 0)
+			exchange_rate = get_exchange_rate("CDF", "USD") or 1
+			total = total_usd + (total_cdf * exchange_rate)
 
 			# Check if target is met
-			if total_usd >= target.target:
-				discount = total_usd * usd_rate / 100  # Assuming rate is in percentage
-				self.add_discount_row(target, total_usd, discount, usd_rate, 'USD')
-			
-			exchange_rate = get_exchange_rate("CDF", "USD") or 1
+			if total >= target.target:
+				if total_usd > 0:
+					discount = total_usd * usd_rate / 100  # Assuming rate is in percentage
+					self.add_discount_row(target, total_usd, discount, usd_rate, 'USD')
+				if total_cdf > 0:
+					discount = total_cdf * cdf_rate / 100  # Assuming rate is in percentage
+					self.add_discount_row(target, total_cdf, discount, cdf_rate, 'CDF')
 
-			if total_cdf * exchange_rate >= target.target:
-				discount = total_cdf * cdf_rate / 100  # Assuming rate is in percentage
-				#exchange_rate = get_exchange_rate("CDF", "USD")
-				self.add_discount_row(target, total_cdf, discount, cdf_rate, 'CDF')
+			
+			#exchange_rate = get_exchange_rate("CDF", "USD") or 1
+			#if total_cdf * exchange_rate >= target.target:
+			#	discount = total_cdf * cdf_rate / 100  # Assuming rate is in percentage
+			#	#exchange_rate = get_exchange_rate("CDF", "USD")
+			#	self.add_discount_row(target, total_cdf, discount, cdf_rate, 'CDF')
 
 		
 
