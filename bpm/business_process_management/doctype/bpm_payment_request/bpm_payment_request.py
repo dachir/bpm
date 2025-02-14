@@ -38,7 +38,7 @@ class BPMPaymentRequest(Document):
 		args = {
 			"doctype": "Payment Entry",
 			"party_type": "Supplier",
-			"party": "LCE99"str(frappe.utils.getdate().year)[2:] if self.branch ="Kinshasa" else "LCE"str(frappe.utils.getdate().year),
+			"party": "LCE99" + str(frappe.utils.getdate().year)[2:] if self.branch =="Kinshasa" else "LCE" + str(frappe.utils.getdate().year),
 			"paid_amount": self.amount,
 			"received_amount": self.amount,
 			"target_exchange_rate": 1.0,
@@ -51,5 +51,6 @@ class BPMPaymentRequest(Document):
 
 		pay_doc = frappe.get_doc(args)
 		pay_doc.insert()
+		self.payment_entry = pay_doc.name
 		#pay_doc.submit()
 			
