@@ -6,7 +6,8 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
-  "type_action"
+  "type_action",
+  "description"
  ],
  "fields": [
   {
@@ -14,11 +15,16 @@
    "fieldtype": "Data",
    "label": "Type Action",
    "unique": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-11-19 17:41:40.840330",
+ "modified": "2025-02-08 13:44:36.240298",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Type Action",

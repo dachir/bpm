@@ -26,7 +26,7 @@ class BPMSalaryWithdrawals(Document):
 			gl_entries = []
 			posting_date = nowdate()
 			total_amount = flt(self.amount)
-			supplier = self.supplier
+			#supplier = self.supplier
 			debit_account = "66210000 - Salaries Expats - MCO"
 			credit_account = '42110100 - Staff Salary Credit -Expat - MCO'
 			currency = self.currency
