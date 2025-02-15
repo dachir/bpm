@@ -36,14 +36,14 @@ class BPMPaymentRequest(Document):
         if not data:
             frappe.throw("No default account found for the selected Mode of Payment and Company.")
 
-        account = data[0]["default_account"]
-        account_currency = data[0]["account_currency"]
+        account = data[0].default_account
+        account_currency = data[0].account_currency
 
         if self.currency != account_currency:
             frappe.throw("The document currency is different from the cash register currency!")
 
         # Get current year
-        current_year = now_datetime().year  
+        current_year = getdate().year  
         year_suffix = str(current_year)[2:]  # Extract last two digits (e.g., "25")
 
         # Determine party value dynamically based on branch
