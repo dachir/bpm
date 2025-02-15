@@ -9,8 +9,8 @@ from erp_space import erpspace
 
 class BPMPaymentRequest(Document):
 	
-	#def validate(self):
-	#	erpspace.share_doc(self)
+	def validate(self):
+		erpspace.share_doc(self)
 
 	def before_save(self):
 		self.amount_letter = money_in_words(self.amount, self.currency)

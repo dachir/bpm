@@ -36,10 +36,12 @@ frappe.ui.form.on("BPM Payment Request", {
         // Check if expense_report is filled
         if (frm.doc.expense_report) {
             $('.form-page').css('background-color', filled_bg); // Apply yellow background
-            $('.page-head-content').css('background-color', filled_header_bg); // Thicker yellow header
+            $('.page-head-content').css('background-color', filled_header_bg); // Thicker yellow header 
+            $('.layout-side-section').css('background-color', filled_header_bg);
         } else {
             $('.form-page').css('background-color', default_bg); // Default red background
             $('.page-head-content').css('background-color', default_header_bg); // Soft red header
+            $('.layout-side-section').css('background-color', default_header_bg);
             $('input, select, textarea, .form-control').css('background-color', '#FFFFFF'); // Ensure form controls remain white 
         }
 
