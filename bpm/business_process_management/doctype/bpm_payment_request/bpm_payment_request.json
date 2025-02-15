@@ -25,7 +25,9 @@
   "section_break_xmge",
   "cost_center",
   "column_break_alyk",
+  "employee",
   "column_break_fodo",
+  "vehicle",
   "amended_from"
  ],
  "fields": [
@@ -153,12 +155,24 @@
    "fieldtype": "Data",
    "label": "Expense Report",
    "read_only": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "vehicle",
+   "fieldtype": "Link",
+   "label": "Vehicle",
+   "options": "Vehicle"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-14 16:26:18.855954",
+ "modified": "2025-02-15 13:42:41.496188",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Payment Request",
