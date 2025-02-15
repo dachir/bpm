@@ -63,7 +63,8 @@ class BPMPaymentRequest(Document):
 			"paid_to_account_currency": account_currency,
 			"reference_no": self.name,
 			"reference_date": self.date,
-			"branch": self.branch
+			"branch": self.branch,
+			"mode_of_payment": self.mode_of_payment,
 		}
 
 		try:
