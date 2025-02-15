@@ -20,37 +20,58 @@ class BPMPaymentRequest(Document):
 	def on_submit(self):
 		self.create_payment()
 
-	def create_payment():
-		data = frappe.db.sql(
-			"""
-			SELECT m.default_account,a.account_currency
-			FROM `tabMode of Payment Account` m INNER JOIN tabAccount a ON a.name = m.default_account
-			WHERE m.parent = %s AND m.company = %s
-			""",(self.mode_of_payment,self.company), as_dict = 1
-		)
+	def create_payment(self):
+        data = frappe.db.sql(
+            """
+            SELECT m.default_account, a.account_currency
+            FROM `tabMode of Payment Account` m 
+            INNER JOIN `tabAccount` a ON a.name = m.default_account
+            WHERE m.parent = %s AND m.company = %s
+            """,
+            (self.mode_of_payment, self.company), 
+            as_dict=True
+        )
 
-		account = data[0].default_account
-		account_currency = data[0].account_currency
+        # Ensure there is a valid account returned
+        if not data:
+            frappe.throw("No default account found for the selected Mode of Payment and Company.")
 
-		if self.currency != account_currency:
-			frappe.throw("The document currency is different from the cash register currency!")
+        account = data[0]["default_account"]
+        account_currency = data[0]["account_currency"]
 
-		args = {
-			"doctype": "Payment Entry",
-			"party_type": "Supplier",
-			"party": "LCE99" + str(frappe.utils.getdate().year)[2:] if self.branch =="Kinshasa" else "LCE" + str(frappe.utils.getdate().year),
-			"paid_amount": self.amount,
-			"received_amount": self.amount,
-			"target_exchange_rate": 1.0,
-			"paid_to": account,
-			"paid_to_account_currency": account_currency,
-			"reference_no": self.name,
-			"reference_date": self.date,
-			"branch": self.branch
-		}
+        if self.currency != account_currency:
+            frappe.throw("The document currency is different from the cash register currency!")
 
-		pay_doc = frappe.get_doc(args)
-		pay_doc.insert()
-		self.payment_entry = pay_doc.name
-		#pay_doc.submit()
+        # Get current year
+        current_year = now_datetime().year  
+        year_suffix = str(current_year)[2:]  # Extract last two digits (e.g., "25")
+
+        # Determine party value dynamically based on branch
+        if self.branch == "Kinshasa":
+            party = f"LCE99{year_suffix}"  # Example: "LCE9925"
+        else:
+            party = f"LCE{current_year}"  # Example: "LCE2025"
+
+        args = {
+            "doctype": "Payment Entry",
+            "party_type": "Supplier",
+            "party": party,
+            "paid_amount": self.amount,
+            "received_amount": self.amount,
+            "target_exchange_rate": 1.0,
+            "paid_to": account,
+            "paid_to_account_currency": account_currency,
+            "reference_no": self.name,
+            "reference_date": self.date,
+            "branch": self.branch
+        }
+
+        try:
+            pay_doc = frappe.get_doc(args)
+            pay_doc.insert()
+            self.payment_entry = pay_doc.name
+            # Uncomment the next line if you want to submit the document automatically
+            # pay_doc.submit()
+        except Exception as e:
+            frappe.throw(f"Error while creating Payment Entry: {str(e)}")
 			
