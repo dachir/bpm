@@ -19,9 +19,31 @@ frappe.ui.form.on("BPM Expense Report", {
         });
         frm.refresh_field("nature");
     },
- 	//refresh(frm) {
+    refresh: function(frm) { 
+        // Background when expense_report is filled (very light yellow)
+        let filled_bg = '#FFFEF0'; 
+        // Header background when expense_report is filled (slightly thicker yellow)
+        let filled_header_bg = '#FFF7E6'; 
 
- 	//},
+        // Check if expense_report is filled
+        if (frm.doc.payment_request) {
+            $('.form-page').css('background-color', filled_bg); // Apply yellow background
+            $('.page-head-content').css('background-color', filled_header_bg); // Thicker yellow header 
+            $('.layout-side-section').css('background-color', filled_header_bg);
+        }
+        else {
+            $('.form-page').css('background-color', ""); 
+            $('.page-head-content').css('background-color', ""); 
+            $('.layout-side-section').css('background-color', "");
+        }
+
+        // Adjust header title color for better contrast
+        $('.page-title').css('color', '#990000'); 
+    },
+    // Also apply color changes when the expense_report field is updated
+    payment_request: function(frm) {
+        frm.trigger('refresh');
+    },
     payment_terms_template: function (frm) {
         if (frm.doc.payment_terms_template) {
             frappe.call({
@@ -57,4 +79,20 @@ frappe.ui.form.on("BPM Expense Report", {
             });
         }
     },
+});
+
+// Function to reset styles when leaving the form
+function resetFormStyles() {
+    $('.form-page').css('background-color', '');
+    $('.page-head-content').css('background-color', '');
+}
+
+// Reset colors when navigating away using Frappe's routing system
+frappe.router.on('change', function() {
+    resetFormStyles();
+});
+
+// Reset colors when the page is reloaded or before leaving
+$(window).on('beforeunload', function() {
+    resetFormStyles();
 });

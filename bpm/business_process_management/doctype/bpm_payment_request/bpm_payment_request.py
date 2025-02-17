@@ -11,6 +11,8 @@ class BPMPaymentRequest(Document):
 	
 	def validate(self):
 		erpspace.share_doc(self)
+		if self.branch != "Kinshasa":
+			frappe.throw("Only kinshasa is allowed for Bon Rouge.")
 
 	def before_save(self):
 		self.amount_letter = money_in_words(self.amount, self.currency)
@@ -52,15 +54,25 @@ class BPMPaymentRequest(Document):
 		else:
 			party = f"LCE{current_year}"  # Example: "LCE2025"
 
+
+		credit_account = "58120000 - Bon A Justifier USD - Kinshasa - MCO" if self.currency == "USD" else "58110000 - Bon A Justifier CDF - Kinshasa - MCO"
+		credit_account_currency = frappe.db.get_value("Account", credit_account, "currency")
+
 		args = {
 			"doctype": "Payment Entry",
-			"party_type": "Supplier",
-			"party": party,
+			"payment_type": "Internal Transfer",
+			"posting_date": getdate(),
+			"mode_of_payment_type": "Cash",
+			#"party_type": "Supplier",
+			#"party": party,
+			"paid_from": account,
+			"paid_from_account_currency": account_currency,
+			"paid_to": credit_account,
+			"paid_to_account_currency": credit_account_currency,
 			"paid_amount": self.amount,
 			"received_amount": self.amount,
-			"target_exchange_rate": 1.0,
-			"paid_to": account,
-			"paid_to_account_currency": account_currency,
+			#"source_exchange_rate": 1.0,
+			#"target_exchange_rate": 1.0,
 			"reference_no": self.name,
 			"reference_date": self.date,
 			"branch": self.branch,
