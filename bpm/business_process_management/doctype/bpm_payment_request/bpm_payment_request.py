@@ -33,6 +33,7 @@ class BPMPaymentRequest(Document):
 			(self.mode_of_payment, self.company), 
 			as_dict=True
 		)
+		
 
 		# Ensure there is a valid account returned
 		if not data:
