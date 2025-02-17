@@ -56,7 +56,7 @@ class BPMPaymentRequest(Document):
 
 
 		credit_account = "58120000 - Bon A Justifier USD - Kinshasa - MCO" if self.currency == "USD" else "58110000 - Bon A Justifier CDF - Kinshasa - MCO"
-		credit_account_currency = frappe.db.get_value("Account", credit_account, "currency")
+		credit_account_currency = frappe.db.get_value("Account", credit_account, "account_currency")
 
 		args = {
 			"doctype": "Payment Entry",
