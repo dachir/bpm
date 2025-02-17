@@ -161,7 +161,8 @@
    "fieldname": "employee",
    "fieldtype": "Link",
    "label": "Employee",
-   "options": "Employee"
+   "options": "Employee",
+   "reqd": 1
   },
   {
    "fieldname": "vehicle",
@@ -173,7 +174,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-17 14:46:13.717009",
+ "modified": "2025-02-17 22:50:32.251393",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Payment Request",
