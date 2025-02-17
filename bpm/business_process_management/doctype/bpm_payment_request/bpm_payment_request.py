@@ -33,7 +33,7 @@ class BPMPaymentRequest(Document):
 			(self.mode_of_payment, self.company), 
 			as_dict=True
 		)
-		
+
 
 		# Ensure there is a valid account returned
 		if not data:
@@ -84,6 +84,7 @@ class BPMPaymentRequest(Document):
 			pay_doc = frappe.get_doc(args)
 			pay_doc.insert()
 			self.payment_entry = pay_doc.name
+			self.db_set("payment_entry", pay_doc.name)
 			# Uncomment the next line if you want to submit the document automatically
 			# pay_doc.submit()
 		except Exception as e:
