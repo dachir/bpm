@@ -14,12 +14,10 @@ from erp_space import erpspace
 
 class BPMMarketingOperations(Document):
 	def validate(self):
-		#share_doc_2(self)
 		erpspace.share_doc(self)
 
 	def before_save(self):
 		self.amount_letter = money_in_words(self.amount, self.currency)
-		#share_doc_2(self)
 	
 	def on_submit(self):
 		purchase_invoice_name = self.create_purchase_invoice()
