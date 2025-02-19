@@ -19,7 +19,7 @@ class BPMMarketingOperations(Document):
 
 	def before_save(self):
 		self.amount_letter = money_in_words(self.amount, self.currency)
-		share_doc_2(self)
+		#share_doc_2(self)
 	
 	def on_submit(self):
 		purchase_invoice_name = self.create_purchase_invoice()
@@ -126,7 +126,7 @@ class BPMMarketingOperations(Document):
 			}))
 
 			if self.payment_terms_template :
-				purchase_invoice.update({ "payment_terms_template": "50% after 7 Days - 50% after 30 Day", })
+				purchase_invoice.update({ "payment_terms_template": self.payment_terms_template, })
 
 			# Add child items from the `details` table
 			for line in self.details:
