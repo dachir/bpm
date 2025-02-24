@@ -30,7 +30,7 @@ class BPMSalaryWithdrawals(Document):
 			debit_account = "66210000 - Salaries Expats - MCO"
 			credit_account = '42110100 - Staff Salary Credit -Expat - MCO'
 			currency = self.currency
-			remarks = self.description
+			remarks = f"Salary {self.type} {self.pay_period}"
 			company = self.company
 
 			# Fetch account currencies
