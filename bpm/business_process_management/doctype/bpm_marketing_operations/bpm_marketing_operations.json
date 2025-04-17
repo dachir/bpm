@@ -13,6 +13,7 @@
   "date",
   "description",
   "purchase_invoice",
+  "payment_request",
   "column_break_tdbu",
   "branch",
   "currency",
@@ -31,7 +32,8 @@
   "payment_schedule",
   "details_section",
   "details",
-  "details_tab"
+  "details_tab",
+  "amended_from"
  ],
  "fields": [
   {
@@ -177,12 +179,28 @@
    "label": "Purchase Invoice",
    "options": "Purchase Invoice",
    "read_only": 1
+  },
+  {
+   "fieldname": "payment_request",
+   "fieldtype": "Link",
+   "label": "Payment Request",
+   "options": "BPM Payment Request"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "BPM Marketing Operations",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-01-12 19:14:16.319458",
+ "modified": "2025-03-31 10:40:36.592876",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Marketing Operations",

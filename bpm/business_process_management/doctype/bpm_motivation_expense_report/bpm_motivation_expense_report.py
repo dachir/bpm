@@ -23,6 +23,9 @@ class BPMMotivationExpenseReport(Document):
 		purchase_invoice_name = self.create_purchase_invoice()
 		self.db_set("purchase_invoice", purchase_invoice_name)
 
+		if self.payment_request:
+			frappe.db.set_value("BPM Payment Request", self.payment_request, "expense_report", self.name)
+
 	def create_purchase_invoice(self):
 		try:
 			due_date = nowdate()
@@ -41,7 +44,8 @@ class BPMMotivationExpenseReport(Document):
 			}))
 
 
-			account = "63280300 - Business expenses - MCO"
+			#account = "63280300 - Business expenses - MCO"
+			account = frappe.db.get_value("Expense Nature", self.nature, account)
 			item_name = f"{self.direction} {self.ministry} {self.description}"[:100]  # First 256 characters for item_name
 			description = self.description  # Full description
 

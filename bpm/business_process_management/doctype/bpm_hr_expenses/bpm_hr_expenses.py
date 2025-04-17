@@ -26,6 +26,9 @@ class BPMHRExpenses(Document):
 		purchase_invoice_name = self.create_purchase_invoice()
 		self.db_set("purchase_invoice", purchase_invoice_name)
 
+		if self.payment_request:
+			frappe.db.set_value("BPM Payment Request", self.payment_request, "expense_report", self.name)
+
 
 	def create_purchase_invoice(self):
 		try:

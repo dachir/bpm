@@ -15,6 +15,7 @@
   "supplier",
   "description",
   "purchase_invoice",
+  "payment_request",
   "column_break_tdbu",
   "branch",
   "nature",
@@ -197,12 +198,18 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "payment_request",
+   "fieldtype": "Link",
+   "label": "Payment Request",
+   "options": "BPM Payment Request"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-01-15 13:33:11.998160",
+ "modified": "2025-04-17 12:28:43.444113",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM HR Expenses",

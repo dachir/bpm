@@ -13,8 +13,10 @@
   "date",
   "description",
   "purchase_invoice",
+  "payment_request",
   "column_break_tdbu",
   "branch",
+  "nature",
   "currency",
   "amount",
   "amount_letter",
@@ -141,12 +143,24 @@
   {
    "fieldname": "section_break_ytvj",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "payment_request",
+   "fieldtype": "Link",
+   "label": "Payment Request",
+   "options": "BPM Payment Request"
+  },
+  {
+   "fieldname": "nature",
+   "fieldtype": "Link",
+   "label": "Nature",
+   "options": "Expense Nature"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-11-26 12:34:48.708612",
+ "modified": "2025-04-17 12:31:00.812242",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Motivation Expense Report",
