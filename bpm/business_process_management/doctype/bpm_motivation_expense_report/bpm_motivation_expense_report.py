@@ -45,7 +45,7 @@ class BPMMotivationExpenseReport(Document):
 
 
 			#account = "63280300 - Business expenses - MCO"
-			account = frappe.db.get_value("Expense Nature", self.nature, account)
+			account = frappe.db.get_value("Expense Nature", self.nature, "account")
 			item_name = f"{self.direction} {self.ministry} {self.description}"[:100]  # First 256 characters for item_name
 			description = self.description  # Full description
 
