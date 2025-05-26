@@ -48,6 +48,7 @@ class BPMExpenseReport(Document):
 				"branch": self.branch,
 				"cost_center": self.cost_center,
 				"wf_user": frappe.session.user,
+				"custom_bpm_number": self.name,
 			}))
 
 			if self.payment_terms_template :

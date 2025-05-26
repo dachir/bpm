@@ -41,6 +41,7 @@ class BPMMotivationExpenseReport(Document):
 				"branch": self.branch,
 				"cost_center": self.cost_center,
 				"wf_user": frappe.session.user,
+				"custom_bpm_number": self.name,
 			}))
 
 

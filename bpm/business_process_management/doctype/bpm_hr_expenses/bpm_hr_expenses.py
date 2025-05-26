@@ -46,6 +46,7 @@ class BPMHRExpenses(Document):
 				#"payment_terms_template": "50% after 7 Days - 50% after 30 Day",
 				"branch": self.branch,
 				"wf_user": frappe.session.user,
+				"custom_bpm_number": self.name,
 			}))
 
 			#if self.category != "Rémunérations et Avantages":
