@@ -1,0 +1,32 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-06-13 18:15:06.512707",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "categories"
+ ],
+ "fields": [
+  {
+   "fieldname": "categories",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Categories",
+   "options": "BPM IT Category"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-06-13 18:26:03.794909",
+ "modified_by": "Administrator",
+ "module": "Business Process Management",
+ "name": "BPM IT Request Categories",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

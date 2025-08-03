@@ -1,5 +1,12 @@
 // Copyright (c) 2024, Kossivi and contributors
 // For license information, please see license.txt
+function calculate_total(frm) {
+    let total = 0;
+    (frm.doc.details || []).forEach(row => {
+        total += flt(row.amount);
+    });
+    frm.set_value('total', total);
+}
 
 frappe.ui.form.on("BPM HR Expenses", {
     setup: function (frm) {
@@ -56,16 +63,6 @@ frappe.ui.form.on("BPM HR Expenses", {
         }
         frm.fields_dict['details'].grid.update_docfield_property("group_2", "label", frm.doc.category === "Transport et Véhicules" ? "Vehicule" : "Employee");
     },
-    /*nature: function (frm) {
-        if (frm.doc.nature == "Transport Staff"){
-            frm.toggle_display("details_section",true);
-        }
-        else{
-            frm.toggle_display("details_section",false);
-            frm.clear_table('details');
-            frm.refresh_field('details');
-        }
-    },*/
     payment_terms_template: function (frm) {
         if (frm.doc.payment_terms_template) {
             frappe.call({
@@ -100,7 +97,10 @@ frappe.ui.form.on("BPM HR Expenses", {
                 }
             });
         }
-    }
+    },
+    validate(frm) {
+        calculate_total(frm);
+    },
 });
 
 frappe.ui.form.on('BPM Expense Details', {
@@ -132,6 +132,12 @@ frappe.ui.form.on('BPM Expense Details', {
         }
         
 	},
+    amount(frm) {
+        calculate_total(frm);
+    },
+    items_remove(frm) {
+        calculate_total(frm);
+    }
 });
 
 /*frappe.ui.form.on("BPM HR Expenses","refresh", function(frm, cdt, cdn) { 

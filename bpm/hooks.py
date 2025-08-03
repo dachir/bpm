@@ -103,14 +103,9 @@ app_license = "MIT"
 # Hook on document methods and events
 
 doc_events = {
-    #"BPM Sales Discount": {
-    #    "before_delete": "bpm.business_process_management.doctype.bpm_sales_discount.bpm_sales_discount.before_delete"
-    #}
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
+    "BPM Supplier Master Creation": {
+        "validate": "erpmco.utils.purchase_receipt.share_document",
+    },
 }
 
 # Scheduled Tasks

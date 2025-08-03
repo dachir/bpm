@@ -1,0 +1,222 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{YY}ITR{MM}{#####}",
+ "creation": "2025-06-13 15:40:11.165769",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "department",
+  "material",
+  "mail",
+  "internet",
+  "column_break_bgxk",
+  "material_label",
+  "accesories",
+  "section_break_xesh",
+  "mail_label",
+  "local_mail",
+  "is_internal",
+  "remote_mail",
+  "column_break_hplp",
+  "internet_label",
+  "device",
+  "is_pc_access",
+  "is_mobile_access",
+  "property",
+  "guest",
+  "office_use_only",
+  "mobiles_restricted",
+  "residence",
+  "handheld_device",
+  "marketing_users",
+  "full_access",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "column_break_bgxk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_xesh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "local_mail",
+   "fieldtype": "Check",
+   "label": "Local Mail"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_internal",
+   "fieldtype": "Check",
+   "label": "Is Internal"
+  },
+  {
+   "fieldname": "column_break_hplp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "guest",
+   "fieldtype": "Check",
+   "label": "Guest"
+  },
+  {
+   "default": "0",
+   "fieldname": "office_use_only",
+   "fieldtype": "Check",
+   "label": "Office Use only"
+  },
+  {
+   "default": "0",
+   "fieldname": "mobiles_restricted",
+   "fieldtype": "Check",
+   "label": "Mobiles restricted"
+  },
+  {
+   "default": "0",
+   "fieldname": "residence",
+   "fieldtype": "Check",
+   "label": "Residence"
+  },
+  {
+   "default": "0",
+   "fieldname": "handheld_device",
+   "fieldtype": "Check",
+   "label": "Handheld Device"
+  },
+  {
+   "default": "0",
+   "fieldname": "marketing_users",
+   "fieldtype": "Check",
+   "label": "Marketing Users"
+  },
+  {
+   "default": "Test",
+   "fieldname": "full_access",
+   "fieldtype": "Check",
+   "label": "Full Access"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "BPM IT Request",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "accesories",
+   "fieldtype": "Table MultiSelect",
+   "label": "Accesories",
+   "options": "BPM IT Request Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "remote_mail",
+   "fieldtype": "Check",
+   "label": "Remote Mail"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_pc_access",
+   "fieldtype": "Check",
+   "label": "Is PC Access"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_mobile_access",
+   "fieldtype": "Check",
+   "label": "Is Mobile Access"
+  },
+  {
+   "fieldname": "device",
+   "fieldtype": "Heading",
+   "ignore_xss_filter": 1,
+   "label": "<h4>- Device</h4>"
+  },
+  {
+   "fieldname": "property",
+   "fieldtype": "Heading",
+   "ignore_xss_filter": 1,
+   "label": "<h4>- Property</h4>"
+  },
+  {
+   "default": "0",
+   "fieldname": "material",
+   "fieldtype": "Check",
+   "label": "Material"
+  },
+  {
+   "fieldname": "mail_label",
+   "fieldtype": "Heading",
+   "label": "Mail"
+  },
+  {
+   "fieldname": "internet_label",
+   "fieldtype": "Heading",
+   "label": "Internet"
+  },
+  {
+   "default": "0",
+   "fieldname": "mail",
+   "fieldtype": "Check",
+   "label": "Mail"
+  },
+  {
+   "default": "0",
+   "fieldname": "internet",
+   "fieldtype": "Check",
+   "label": "Internet"
+  },
+  {
+   "fieldname": "material_label",
+   "fieldtype": "Heading",
+   "label": "Material"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-06-14 09:28:49.053389",
+ "modified_by": "Administrator",
+ "module": "Business Process Management",
+ "name": "BPM IT Request",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

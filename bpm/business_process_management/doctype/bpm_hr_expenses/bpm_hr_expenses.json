@@ -31,6 +31,7 @@
   "column_break_vqtv",
   "details_section",
   "details",
+  "total",
   "section_break_kkjr",
   "payment_terms_template",
   "payment_schedule",
@@ -204,12 +205,19 @@
    "fieldtype": "Link",
    "label": "Payment Request",
    "options": "BPM Payment Request"
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Float",
+   "label": "Total",
+   "read_only": 1
   }
  ],
+ "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-04-17 12:28:43.444113",
+ "modified": "2025-08-03 16:22:40.726825",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM HR Expenses",
@@ -230,6 +238,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
