@@ -9,7 +9,7 @@ from erp_space import erpspace
 
 class BPMPaymentRequest(Document):
 	
-	def validate(self):
+	def on_update(self):
 		erpspace.share_doc(self)
 		if self.branch != "Kinshasa":
 			frappe.throw("Only kinshasa is allowed for Bon Rouge.")

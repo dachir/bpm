@@ -106,6 +106,13 @@ doc_events = {
     "BPM Supplier Master Creation": {
         "validate": "erpmco.utils.purchase_receipt.share_document",
     },
+    "*": {
+        "on_update": [
+            "erp_space.erpspace.ErpSpace.close_previous_state_todos_on_state_change",
+            "erp_space.erpspace.ErpSpace.close_todos_on_rejected",   # ⬅️ ici
+        ],
+        "on_submit": "erp_space.erpspace.ErpSpace.close_todos_on_submit",
+    },
 }
 
 # Scheduled Tasks
