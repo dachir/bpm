@@ -12,7 +12,9 @@
   "payment_entry",
   "date",
   "amount",
-  "currency"
+  "currency",
+  "company_currency",
+  "payment_amount"
  ],
  "fields": [
   {
@@ -40,24 +42,38 @@
    "fieldname": "amount",
    "fieldtype": "Currency",
    "label": "Amount",
-   "options": "currency"
+   "options": "company_currency"
   },
   {
    "fieldname": "currency",
    "fieldtype": "Link",
    "label": "Currency",
    "options": "Currency"
+  },
+  {
+   "fieldname": "company_currency",
+   "fieldtype": "Link",
+   "label": "Company Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "payment_amount",
+   "fieldtype": "Currency",
+   "label": "Payment Amount",
+   "options": "currency"
   }
  ],
+ "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-02-02 00:08:50.344576",
+ "modified": "2025-11-23 15:03:32.630664",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Sales Discount Payments CDF",
  "owner": "Administrator",
  "permissions": [],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

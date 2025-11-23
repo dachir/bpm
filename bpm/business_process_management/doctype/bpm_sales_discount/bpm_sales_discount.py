@@ -61,7 +61,7 @@ class BPMSalesDiscount(Document):
 					self.add_discount_row(target, total_usd, discount, usd_rate, 'USD')
 				if total_cdf > 0:
 					discount = total_cdf * cdf_rate / 100  # Assuming rate is in percentage
-					self.add_discount_row(target, total_cdf, discount, cdf_rate, 'CDF')
+					self.add_discount_row(target, total_cdf, discount, cdf_rate, 'USD')
 
 			
 			#exchange_rate = get_exchange_rate("CDF", "USD") or 1
@@ -100,6 +100,8 @@ class BPMSalesDiscount(Document):
 		payments_usd = []
 		payments_cdf = []
 
+		default_currency = frappe.db.get_single_value('Global Defaults', 'default_currency')
+
 		for target in self.targets:
 			payments = frappe.get_all(
 				"Payment Entry",
@@ -109,7 +111,7 @@ class BPMSalesDiscount(Document):
 					"docstatus": 1,
 					"custom_discount_entry": ["is", "not set"] ,
 				},
-				fields=["name", "posting_date", "paid_amount", "paid_to_account_currency"]
+				fields=["name", "posting_date", "paid_amount", "paid_to_account_currency", "received_amount"]
 			)
 
 			for payment in payments:
@@ -129,7 +131,9 @@ class BPMSalesDiscount(Document):
 						"payment_entry": payment['name'],
 						"date": payment['posting_date'],
 						"amount": payment['paid_amount'],
-						"currency": payment['paid_to_account_currency']
+						"currency": payment['paid_to_account_currency'],
+						"company_currency": default_currency,
+						"payment_amount": payment['received_amount']
 					})
 
 		# Return results as a dictionary
@@ -143,14 +147,14 @@ class BPMSalesDiscount(Document):
 		default_currency = erpnext.get_company_currency(self.company)
 		total_discount = 0
 		for d in self.details:
-			discount = d.discount or 0
+			#discount = d.discount or 0
 			
 			# Get the exchange rate
-			exchange_rate = get_exchange_rate(d.currency, default_currency) or 1
+			#exchange_rate = get_exchange_rate(d.currency, default_currency) or 1
 			
 			# Convert the discount to the default currency
-			converted_discount = discount * exchange_rate
-			total_discount += converted_discount
+			#converted_discount = discount * exchange_rate
+			total_discount += d.discount or 0
 
 
 		jv_name = ""
@@ -201,7 +205,7 @@ class BPMSalesDiscount(Document):
 			"""
 				SELECT name, begin, end 
 				FROM `tabBPM Sales Discount`
-				WHERE customer = %(customer)s AND name != %(current_name)s  -- Exclude the current document in the check
+				WHERE customer = %(customer)s AND name != %(current_name)s AND docstatus = 1  -- Exclude the current document in the check
 				AND (
 					(begin <= %(end)s AND end >= %(begin)s)  -- Overlap condition
 				)
