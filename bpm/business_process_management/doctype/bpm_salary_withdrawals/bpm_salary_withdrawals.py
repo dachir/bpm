@@ -16,10 +16,71 @@ class BPMSalaryWithdrawals(Document):
 		#share_doc_2(self)
 		erpspace.share_doc(self)
 	
-	#def on_submit(self):
+	def on_submit(self):
 		#code = create_salary_withdrawal(self.name)
 		#frappe.db.set_value(self.doctype,self.name,'sage_payment_number',code)
-		#self.create_gl_entries()
+		self.create_payment_entry_draft()
+
+	def create_payment_entry_draft(self):
+		"""
+		À la soumission du BPM Salary Withdrawals, on crée un Payment Entry en brouillon
+		pour que la compta puisse le contrôler et le soumettre plus tard.
+		"""
+		try:
+			posting_date = nowdate()
+			total_amount = flt(self.amount, 2)
+
+			pe = frappe.new_doc("Payment Entry")
+
+			# Ici on utilise un Internal Transfer : on reproduit ton écriture
+			pe.payment_type = "Pay"
+			pe.company = frappe.defaults.get_global_default("company")
+			pe.posting_date = posting_date
+			pe.party_type = "Employee"
+			pe.party = self.employee
+			pe.paid_from_account_currency = self.currency
+			pe.paid_to_account_currency = self.currency
+
+			# Si tu as un champ mode_of_payment sur ton doctype, tu peux le réutiliser
+			# sinon, on met une valeur par défaut
+			pe.mode_of_payment = self.mode_of_payment 
+
+			# On transfère du compte crédit vers le compte débit
+			#pe.paid_from = credit_account      # sera crédité
+			#pe.paid_to = debit_account         # sera débité
+
+			pe.paid_amount = total_amount
+			pe.received_amount = total_amount
+
+			pe.reference_no = self.name
+			pe.reference_date = posting_date
+			pe.remarks = f"Salary {self.type} {self.pay_period} from {self.doctype}: {self.name}"
+
+			# Dimensions si elles existent sur Payment Entry
+			if pe.meta.has_field("cost_center") and getattr(self, "cost_center", None):
+				pe.cost_center = self.cost_center
+
+			if pe.meta.has_field("branch") and getattr(self, "branch", None):
+				pe.branch = self.branch
+
+			
+
+			# IMPORTANT : on n'appelle PAS pe.submit(), donc il reste en Draft
+			pe.insert(ignore_permissions=True)
+			pe.submit()
+
+			frappe.db.set_value(self.doctype, self.name, "payment_entry", pe.name)
+
+			frappe.msgprint(
+				_("Payment Entry <b>{0}</b> créé depuis {1} {2}.")
+				.format(pe.name, self.doctype, self.name),
+				alert=True
+			)
+
+		except Exception as e:
+			frappe.log_error(frappe.get_traceback(), "BPM Salary Withdrawals – Payment Entry Creation Error")
+			frappe.throw(_("Une erreur est survenue lors de la création du Payment Entry : {0}").format(str(e)))
+
 
 	def create_gl_entries(self):
 		try:

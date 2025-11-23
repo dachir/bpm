@@ -27,7 +27,9 @@
   "amended_from",
   "sage_entry_tab",
   "cashier",
-  "sage_payment_number"
+  "sage_payment_number",
+  "mode_of_payment",
+  "payment_entry"
  ],
  "fields": [
   {
@@ -129,6 +131,7 @@
   {
    "fieldname": "cashier",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Cashier Code",
    "permlevel": 1
   },
@@ -146,19 +149,34 @@
   {
    "fieldname": "sage_entry_tab",
    "fieldtype": "Tab Break",
-   "label": "Sage Entry"
+   "label": "Payment Entry"
   },
   {
    "fieldname": "sage_payment_number",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Sage Payment Number",
    "permlevel": 1
+  },
+  {
+   "fieldname": "mode_of_payment",
+   "fieldtype": "Link",
+   "label": "Mode of Payment",
+   "options": "Mode of Payment"
+  },
+  {
+   "fieldname": "payment_entry",
+   "fieldtype": "Link",
+   "label": "Payment Entry",
+   "options": "Payment Entry",
+   "read_only": 1
   }
  ],
+ "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-05-05 14:43:14.219365",
+ "modified": "2025-11-23 20:18:40.202126",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Salary Withdrawals",
@@ -178,6 +196,7 @@
    "write": 1
   }
  ],
+ "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
