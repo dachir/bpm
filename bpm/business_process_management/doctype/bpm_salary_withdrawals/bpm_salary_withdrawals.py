@@ -16,10 +16,10 @@ class BPMSalaryWithdrawals(Document):
 		#share_doc_2(self)
 		erpspace.share_doc(self)
 	
-	def on_submit(self):
+	#def on_submit(self):
 		#code = create_salary_withdrawal(self.name)
 		#frappe.db.set_value(self.doctype,self.name,'sage_payment_number',code)
-		self.create_gl_entries()
+		#self.create_gl_entries()
 
 	def create_gl_entries(self):
 		try:
