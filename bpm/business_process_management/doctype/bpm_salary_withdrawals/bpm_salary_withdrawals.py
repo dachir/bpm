@@ -49,7 +49,11 @@ class BPMSalaryWithdrawals(Document):
 			# On transfère du compte crédit vers le compte débit
 			#pe.paid_from = credit_account      # sera crédité
 			#pe.paid_to = debit_account         # sera débité
-
+			paid_from = frappe.get_doc("Mode of Payment Account", {"parent":pe.mode_of_payment,"company":pe.company})
+			pe.paid_from = paid_from.default_account
+			pe.paid_to = '42110200 - Staff Salary Gross -Expat - MCO'  # sera débité
+			pe.paid_from_account_currency = frappe.db.get_value("Account", pe.paid_from, "account_currency")
+			pe.paid_to_account_currency = frappe.db.get_value("Account", pe.paid_to, "account_currency")
 			pe.paid_amount = total_amount
 			pe.received_amount = total_amount
 
