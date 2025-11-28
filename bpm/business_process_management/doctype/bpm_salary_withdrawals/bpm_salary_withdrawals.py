@@ -40,7 +40,8 @@ class BPMSalaryWithdrawals(Document):
 			pe.party = self.employee
 			pe.paid_from_account_currency = self.currency
 			pe.paid_to_account_currency = self.currency
-
+			pe.source_exchange_rate = 1.0
+			pe.target_exchange_rate = 1.0
 			# Si tu as un champ mode_of_payment sur ton doctype, tu peux le réutiliser
 			# sinon, on met une valeur par défaut
 			pe.mode_of_payment = self.mode_of_payment 
@@ -67,7 +68,7 @@ class BPMSalaryWithdrawals(Document):
 
 			# IMPORTANT : on n'appelle PAS pe.submit(), donc il reste en Draft
 			pe.insert(ignore_permissions=True)
-			pe.submit()
+			#pe.submit()
 
 			frappe.db.set_value(self.doctype, self.name, "payment_entry", pe.name)
 
