@@ -14,6 +14,8 @@ from erp_space import erpspace
 
 class BPMMarketingOperations(Document):
 	def validate(self):
+		self.validate_budget_link()
+		self.validate_budget_ceiling()
 		erpspace.share_doc(self)
 
 	def before_save(self):
@@ -25,7 +27,70 @@ class BPMMarketingOperations(Document):
 
 		if self.payment_request:
 			frappe.db.set_value("BPM Payment Request", self.payment_request, "expense_report", self.name)
+	
+	def validate_budget_ceiling(self):
+		if not self.project or not self.budget_detail:
+			return
 
+		budget_row = frappe.db.get_value(
+			"Budget Details",
+			self.budget_detail,
+			["parent", "total", "description"],
+			as_dict=True
+		)
+
+		if not budget_row:
+			frappe.throw("The selected Budget Detail does not exist.")
+
+		line_total = flt(budget_row.total)
+
+		already_used = frappe.db.sql(
+			"""
+			SELECT IFNULL(SUM(amount), 0)
+			FROM `tabBPM Marketing Operations`
+			WHERE budget_detail = %s
+			  AND project = %s
+			  AND docstatus < 2
+			  AND name != %s
+			""",
+			(self.budget_detail, self.project, self.name or ""),
+		)[0][0] or 0
+
+		already_used = flt(already_used)
+		current_amount = flt(self.amount)
+		new_total = already_used + current_amount
+
+		if new_total > line_total:
+			remaining = line_total - already_used
+			frappe.throw(
+				f"Budget exceeded for line '{budget_row.description or self.budget_detail}'. "
+				f"Budget line total = {line_total}, already used = {already_used}, "
+				f"remaining = {remaining}, current amount = {current_amount}."
+			)
+
+	def validate_budget_link(self):
+		if self.project and not self.budget_detail:
+			frappe.throw("Budget Detail is mandatory when Project is filled.")
+
+		if self.budget_detail and not self.project:
+			frappe.throw("Project is mandatory when Budget Detail is filled.")
+
+		if self.budget_detail:
+			parent_info = frappe.db.get_value(
+				"Budget Details",
+				self.budget_detail,
+				["parent", "parenttype", "parentfield"],
+				as_dict=True
+			)
+
+			if not parent_info:
+				frappe.throw("The selected Budget Detail does not exist.")
+
+			if parent_info.parenttype != "Projet" or parent_info.parentfield != "details":
+				frappe.throw("The selected Budget Detail is not linked to a Projet document.")
+
+			if parent_info.parent != self.project:
+				frappe.throw("The selected Budget Detail does not belong to the selected Project.")
 
 	def create_gl_entries(self):
 		try:
