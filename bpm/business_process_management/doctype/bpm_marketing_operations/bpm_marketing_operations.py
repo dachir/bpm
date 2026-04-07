@@ -69,11 +69,9 @@ class BPMMarketingOperations(Document):
 			)
 
 	def validate_budget_link(self):
-		if self.project and not self.budget_detail:
-			frappe.throw("Budget Detail is mandatory when Project is filled.")
-
-		if self.budget_detail and not self.project:
-			frappe.throw("Project is mandatory when Budget Detail is filled.")
+		if self.budget_detail:
+			if not self.project:
+				frappe.throw("Project is mandatory.")
 
 		if self.budget_detail:
 			parent_info = frappe.db.get_value(
