@@ -1,6 +1,31 @@
 // Copyright (c) 2024, Kossivi and contributors
 // For license information, please see license.txt
 
+function refresh_budget_control(frm) {
+    const grid = frm.fields_dict.budget_allocation.grid;
+    grid.cannot_add_rows = true;
+    grid.cannot_delete_rows = true;
+    grid.refresh();
+    grid.toggle_checkboxes(false);
+
+    grid.grid_rows.forEach(row => {
+        const color = cint(row.doc.over_budget) ? "#FFE2E2" : "";
+        row.wrapper.add(row.row).css("background-color", color);
+    });
+
+    const allocations = frm.doc.budget_allocation || [];
+    const unplanned = !frm.is_new() && !frm.doc.budget_detail && !allocations.length;
+    frm.$wrapper.find(".layout-main-section").css("background-color", unplanned ? "#FFF5F5" : "");
+    frm.$wrapper.find(".bpm-unplanned-expense").remove();
+    if (unplanned) {
+        frm.fields_dict.budget_allocation.$wrapper.before(
+            '<div class="bpm-unplanned-expense" style="color:#c62828;font-weight:700;margin-bottom:10px">Dépense non prévue</div>'
+        );
+    }
+
+    frm.set_df_property("project", "read_only", allocations.length ? 1 : 0);
+}
+
 frappe.ui.form.on("BPM Marketing Operations", {
     refresh(frm) {
         // Iterate through the child table rows and change the label
@@ -9,6 +34,7 @@ frappe.ui.form.on("BPM Marketing Operations", {
 
         // Refresh the child table to apply changes
         frm.refresh_field('details');
+        refresh_budget_control(frm);
     },
     type_calcul: function(frm) {
         frm.fields_dict['details'].grid.toggle_enable('rate', cur_frm.doc.category === "Pourcentage");

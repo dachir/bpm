@@ -29,6 +29,8 @@
   "type_calcul",
   "column_break_fodo",
   "column_break_vqtv",
+  "section_break_hfof",
+  "budget_allocation",
   "section_break_kkjr",
   "payment_terms_template",
   "payment_schedule",
@@ -211,17 +213,27 @@
    "hidden": 1,
    "label": "Mkt Budget Detail",
    "options": "Budget Details"
+  },
+  {
+   "fieldname": "section_break_hfof",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "budget_allocation",
+   "fieldtype": "Table",
+   "label": "Budget Allocation",
+   "options": "BPM Marketing Budget Allocation"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-04-04 12:57:24.908724",
+ "modified": "2026-09-16 15:40:10.298469",
  "modified_by": "Administrator",
  "module": "Business Process Management",
  "name": "BPM Marketing Operations",
- "naming_rule": "Expression",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -239,6 +251,7 @@
   }
  ],
  "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

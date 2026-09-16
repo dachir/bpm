@@ -14,8 +14,8 @@ from erp_space import erpspace
 
 class BPMMarketingOperations(Document):
 	def validate(self):
-		self.validate_budget_link()
-		self.validate_budget_ceiling()
+		self.validate_budget_link()  # legacy field
+		self.update_budget_allocation()
 		erpspace.share_doc(self)
 
 	def before_save(self):
@@ -27,68 +27,51 @@ class BPMMarketingOperations(Document):
 
 		if self.payment_request:
 			frappe.db.set_value("BPM Payment Request", self.payment_request, "expense_report", self.name)
-	
-	def validate_budget_ceiling(self):
-		if not self.project or not self.budget_detail:
-			return
 
-		budget_row = frappe.db.get_value(
-			"Budget Details",
-			self.budget_detail,
-			["parent", "total", "description"],
-			as_dict=True
-		)
+	def update_budget_allocation(self):
+		seen = set()
+		for row in self.budget_allocation:
+			if row.budget_detail in seen:
+				frappe.throw(f"Budget Detail {row.budget_detail} is duplicated.")
+			seen.add(row.budget_detail)
 
-		if not budget_row:
-			frappe.throw("The selected Budget Detail does not exist.")
-
-		line_total = flt(budget_row.total)
-
-		already_used = frappe.db.sql(
-			"""
-			SELECT IFNULL(SUM(amount), 0)
-			FROM `tabBPM Marketing Operations`
-			WHERE budget_detail = %s
-			  AND project = %s
-			  AND docstatus < 2
-			  AND name != %s
-			""",
-			(self.budget_detail, self.project, self.name or ""),
-		)[0][0] or 0
-
-		already_used = flt(already_used)
-		current_amount = flt(self.amount)
-		new_total = already_used + current_amount
-
-		if new_total > line_total:
-			remaining = line_total - already_used
-			frappe.throw(
-				f"Budget exceeded for line '{budget_row.description or self.budget_detail}'. "
-				f"Budget line total = {line_total}, already used = {already_used}, "
-				f"remaining = {remaining}, current amount = {current_amount}."
-			)
-
-	def validate_budget_link(self):
-		if self.budget_detail:
-			if not self.project:
-				frappe.throw("Project is mandatory.")
-
-		if self.budget_detail:
-			parent_info = frappe.db.get_value(
-				"Budget Details",
-				self.budget_detail,
-				["parent", "parenttype", "parentfield"],
+			budget = frappe.db.get_value(
+				"Budget Details", row.budget_detail,
+				["parent", "parenttype", "parentfield", "description", "total"],
 				as_dict=True
 			)
+			if not budget or budget.parenttype != "Projet" or budget.parentfield != "details" or budget.parent != self.project:
+				frappe.throw(f"Budget Detail {row.budget_detail} does not belong to Project {self.project}.")
 
-			if not parent_info:
-				frappe.throw("The selected Budget Detail does not exist.")
+			used = frappe.db.sql(
+				"""
+				SELECT IFNULL(SUM(a.amount), 0)
+				FROM `tabBPM Marketing Budget Allocation` a
+				JOIN `tabBPM Marketing Operations` b ON b.name = a.parent
+				WHERE a.budget_detail = %s AND b.docstatus = 1 AND b.name != %s
+				""",
+				(row.budget_detail, self.name or "")
+			)[0][0] or 0
 
-			if parent_info.parenttype != "Projet" or parent_info.parentfield != "details":
-				frappe.throw("The selected Budget Detail is not linked to a Projet document.")
+			row.description = budget.description
+			row.budget_amount = flt(budget.total)
+			row.already_used = flt(used)
+			row.projected_used = row.already_used + flt(row.amount)
+			row.remaining = row.budget_amount - row.projected_used
+			row.over_budget = row.remaining < 0
 
-			if parent_info.parent != self.project:
-				frappe.throw("The selected Budget Detail does not belong to the selected Project.")
+	def validate_budget_link(self):
+		if not self.budget_detail:
+			return
+		if not self.project:
+			frappe.throw("Project is mandatory.")
+
+		parent_info = frappe.db.get_value(
+			"Budget Details", self.budget_detail,
+			["parent", "parenttype", "parentfield"], as_dict=True
+		)
+		if not parent_info or parent_info.parenttype != "Projet" or parent_info.parentfield != "details" or parent_info.parent != self.project:
+			frappe.throw("The selected Budget Detail does not belong to the selected Project.")
 
 	def create_gl_entries(self):
 		try:
